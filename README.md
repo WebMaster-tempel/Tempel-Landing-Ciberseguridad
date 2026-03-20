@@ -18,3 +18,17 @@ View your app in AI Studio: https://ai.studio/apps/8577d690-b9ed-4108-ad5f-457ad
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+
+
+- Info Ponentes // teams
+- Confirmacion fecha // Falta
+- Oscuro - claro fuera 
+- patrocinadores fuera
+- Maps actualziado a falta de saber el lugar
+- Agregar Agenda // decomentar
+- Habilitar correo // leads@tempelgroup.com / copia a marketing
+- formulario Añadir Enum te vas a quedar a comer? En caso de que si, Intolerancias o alergias alimenticias
+- No pueden enviar desde un @gmail o un @hotmail
+- Añadir imagene
+- añadir logo en el footer

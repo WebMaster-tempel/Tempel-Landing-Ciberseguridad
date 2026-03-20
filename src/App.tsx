@@ -25,6 +25,11 @@ import {
 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
+import logoTempel from "./assets/images/brand/logo/logotipo_tempelgroup.png";
+
+import logoCCI from "./assets/images/brand/logo/logotipo_tempelgroup.png";
+import logoMoxa from "./assets/images/brand/logo/logotipo_tempelgroup.png";
+
 // --- Components ---
 
 const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) => {
@@ -36,33 +41,24 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
     { name: "Temáticas", href: "#themes" },
     { name: "Agenda", href: "#agenda" },
     { name: "Ponentes", href: "#speakers" },
-    { name: "Registro", href: "#register" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-primary transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-secondary flex items-center justify-center shrink-0 transition-colors duration-300">
-            <Shield className="text-primary w-5 h-5 transition-colors duration-300" />
+          <div className="flex items-center gap-2">
+            <img
+              src={logoTempel}
+              alt="Tempel Group"
+              className="h-8 sm:h-10 w-auto object-contain transition-all duration-300"
+            />
           </div>
-          <span className="text-xl sm:text-2xl font-condensed font-bold text-heading tracking-tighter uppercase truncate transition-colors duration-300">
-            TEMPEL <span className="text-primary">GROUP</span>
-          </span>
-        </div>
         
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6 text-[10px] font-condensed font-bold uppercase tracking-[0.2em] text-primary transition-colors duration-300">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} className="hover:text-heading transition-colors">{link.name}</a>
           ))}
-          <button 
-            onClick={toggleTheme}
-            className="p-2 hover:bg-secondary hover:text-primary transition-all rounded-full"
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
           <a href="#register" className="border border-heading px-4 py-2 hover:bg-secondary hover:text-primary transition-all">
             Registro
           </a>
@@ -131,14 +127,20 @@ const Hero = () => (
             Preparando la industria del futuro: Convergencia IT/OT, cumplimiento normativo y resiliencia en infraestructuras críticas.
           </p>
           
-          <div className="flex flex-wrap gap-6 mb-12">
+          <div className="flex flex-col gap-4 mb-12">
             <div className="flex items-center gap-3 text-heading font-condensed font-bold uppercase tracking-widest text-sm">
               <Calendar className="w-5 h-5 text-primary" />
-              <span>Octubre 2026</span>
+              <span>30 Abril · Madrid</span>
             </div>
+
             <div className="flex items-center gap-3 text-heading font-condensed font-bold uppercase tracking-widest text-sm">
-              <MapPin className="w-5 h-5 text-primary" />
-              <span>Madrid / Online</span>
+              <Calendar className="w-5 h-5 text-primary" />
+              <span>5 Mayo · Sevilla</span>
+            </div>
+
+            <div className="flex items-center gap-3 text-heading font-condensed font-bold uppercase tracking-widest text-sm">
+              <Calendar className="w-5 h-5 text-primary" />
+              <span>7 Mayo · Bilbao</span>
             </div>
           </div>
 
@@ -160,7 +162,7 @@ const Hero = () => (
           transition={{ duration: 1 }}
           className="relative"
         >
-          <div className="relative z-10 border border-primary p-2 grayscale hover:grayscale-0 transition-all duration-1000">
+          <div className="relative z-10 border border-primary p-2 transition-all duration-1000">
             <img 
               src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1200" 
               alt="Cybersecurity Industrial" 
@@ -177,39 +179,7 @@ const Hero = () => (
   </section>
 );
 
-const Metrics = () => {
-  const metrics = [
-    { label: "Asistentes Esperados", value: "500+", icon: Users },
-    { label: "Empresas Participantes", value: "120+", icon: Building2 },
-    { label: "Expertos Invitados", value: "25+", icon: Award },
-    { label: "Años de Experiencia", value: "30+", icon: Shield },
-  ];
 
-  return (
-    <section className="py-16 bg-secondary text-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-          {metrics.map((metric, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center group"
-            >
-              <div className="mb-4 flex justify-center">
-                <metric.icon className="w-8 h-8 opacity-40 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2 text-primary">{metric.value}</div>
-              <div className="text-[10px] md:text-xs font-condensed font-bold uppercase tracking-widest opacity-60">{metric.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const About = () => (
   <section id="about" className="py-24 md:py-40 px-4 sm:px-6 bg-primary transition-colors duration-300">
@@ -220,7 +190,7 @@ const About = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-7xl font-bold mb-10 leading-tight">Sobre el <br /> Evento</h2>
+          <h2 className="text-4xl md:text-7xl font-bold mb-10 leading-tight">Sobre el Evento</h2>
           <div className="w-20 h-1 bg-heading mb-12" />
           <p className="text-xl md:text-2xl text-heading font-light leading-relaxed mb-8">
             Tras la gran acogida de nuestro encuentro en Barcelona, Tempel Group organiza esta jornada especializada para abordar la realidad de la ciberseguridad industrial.
@@ -298,7 +268,7 @@ const Innovation = () => (
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col lg:flex-row gap-16 items-center">
         <div className="lg:w-1/2">
-          <h2 className="text-4xl md:text-6xl font-bold mb-8">Innovación y Soluciones</h2>
+          <h2 className="text-4xl md:text-6xl font-bold mb-8">¿Por qué asistir?</h2>
           <p className="text-lg text-primary font-light leading-relaxed mb-10">
             Descubre las tecnologías que están transformando la seguridad en entornos productivos. Un espacio dedicado a la vanguardia tecnológica.
           </p>
@@ -321,8 +291,8 @@ const Innovation = () => (
           </div>
         </div>
         <div className="lg:w-1/2 grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="Tech 1" className="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all" referrerPolicy="no-referrer" />
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Tech 2" className="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all mt-8" referrerPolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="Tech 1" className="w-full h-64 object-cover  transition-all" referrerPolicy="no-referrer" />
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Tech 2" className="w-full h-64 object-cover  transition-all mt-8" referrerPolicy="no-referrer" />
         </div>
       </div>
     </div>
@@ -341,7 +311,7 @@ const Agenda = () => {
 
   return (
     <section id="agenda" className="py-24 md:py-40 px-4 sm:px-6 bg-secondary text-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto text-center">
         <div className="mb-20">
           <h2 className="text-primary text-4xl md:text-7xl font-bold mb-6">Agenda del Evento</h2>
           <div className="w-20 h-1 bg-primary" />
@@ -374,10 +344,34 @@ const Agenda = () => {
 
 const Speakers = () => {
   const speakers = [
-    { name: "Carlos Rodríguez", role: "CISO", company: "Tempel Group", desc: "Especialista en ciberseguridad industrial con más de 15 años de experiencia.", img: "https://picsum.photos/seed/speaker1/400/400" },
-    { name: "Elena Martínez", role: "Directora Técnica", company: "MOXA", desc: "Experta en convergencia IT/OT y redes de comunicación críticas.", img: "https://picsum.photos/seed/speaker2/400/400" },
-    { name: "Javier López", role: "Consultor NIS2", company: "CCI", desc: "Asesor legal especializado en normativa europea de ciberseguridad.", img: "https://picsum.photos/seed/speaker3/400/400" },
-    { name: "Marta Sánchez", role: "Ingeniera OT", company: "Industrial Sec", desc: "Líder de proyectos de segmentación y acceso seguro en plantas productivas.", img: "https://picsum.photos/seed/speaker4/400/400" },
+    { 
+      name: "Gemma Garcés", 
+      role: "Por definir", 
+      company: "Tempel Group", 
+      desc: "Pendiente de información.", 
+      img: "https://picsum.photos/seed/gemma/400/400" 
+    },
+    { 
+      name: "José Valiente", 
+      role: "Por definir", 
+      company: "CCI", 
+      desc: "Pendiente de información.", 
+      img: "https://picsum.photos/seed/jose/400/400" 
+    },
+    { 
+      name: "Francisco Herrero", 
+      role: "Por definir", 
+      company: "Moxa", 
+      desc: "Pendiente de información.", 
+      img: "https://picsum.photos/seed/francisco/400/400" 
+    },
+    { 
+      name: "Álvaro Borges", 
+      role: "Por definir", 
+      company: "Moxa", 
+      desc: "Pendiente de información.", 
+      img: "https://picsum.photos/seed/alvaro/400/400" 
+    },
   ];
 
   return (
@@ -385,7 +379,9 @@ const Speakers = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-7xl font-bold mb-6">Ponentes</h2>
-          <p className="text-primary max-w-2xl mx-auto font-light">Líderes de opinión y expertos técnicos que compartirán su conocimiento.</p>
+          <p className="text-primary max-w-2xl mx-auto font-light">
+            Líderes de opinión y expertos técnicos que compartirán su conocimiento.
+          </p>
         </div>
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -398,13 +394,17 @@ const Speakers = () => {
               transition={{ delay: i * 0.1 }}
               className="brutal-card group overflow-hidden"
             >
-              <div className="aspect-square overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+              <div className="aspect-square overflow-hidden transition-all duration-500">
                 <img src={speaker.img} alt={speaker.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-1">{speaker.name}</h3>
-                <div className="text-[10px] font-condensed font-bold uppercase tracking-widest text-primary mb-4">{speaker.role} @ {speaker.company}</div>
-                <p className="text-xs text-primary font-light leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">{speaker.desc}</p>
+                <div className="text-[10px] font-condensed font-bold uppercase tracking-widest text-primary mb-4">
+                  {speaker.role} @ {speaker.company}
+                </div>
+                <p className="text-xs text-primary font-light leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+                  {speaker.desc}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -416,17 +416,39 @@ const Speakers = () => {
 
 const Partners = () => {
   const partners = [
-    { name: "CCI", logo: "https://www.cci-es.org/wp-content/uploads/2021/03/logo-cci-horizontal.png", url: "https://www.cci-es.org/" },
-    { name: "MOXA", logo: "https://www.moxa.com/Moxa/media/PDAMedia/Images/Common/moxa-logo.png", url: "https://www.moxa.com/" }
+    { name: "CCI", logo: logoCCI, url: "https://www.cci-es.org/" },
+    { name: "MOXA", logo: logoMoxa, url: "https://www.moxa.com/" }
   ];
 
   return (
     <section className="py-20 bg-primary border-y border-primary transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-xs font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-40 mb-4">Partners Estratégicos</h2>
+
+        {/* Evento organizado por */}
+        <div className="text-center mb-16">
+          <h2 className="text-xs font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-40 mb-4">
+            Evento organizado por
+          </h2>
+
+          <div className="flex justify-center items-center mb-6">
+            <img
+              src={logoTempel}
+              alt="Tempel Group"
+              className="h-14 md:h-16 w-auto object-contain"
+            />
+          </div>
+
           <div className="w-12 h-px bg-primary mx-auto opacity-20" />
         </div>
+
+        {/* Partners */}
+        <div className="text-center mb-12">
+          <h2 className="text-xs font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-40 mb-4">
+            Partners Estratégicos
+          </h2>
+          <div className="w-12 h-px bg-primary mx-auto opacity-20" />
+        </div>
+
         <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
           {partners.map((partner) => (
             <motion.a
@@ -435,22 +457,21 @@ const Partners = () => {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
-              className="grayscale hover:grayscale-0 transition-all duration-500 flex items-center justify-center"
+              className="transition-all duration-500 flex items-center justify-center"
             >
-              <img 
-                src={partner.logo} 
-                alt={partner.name} 
+              <img
+                src={partner.logo}
+                alt={partner.name}
                 className="h-12 md:h-16 w-auto object-contain"
-                referrerPolicy="no-referrer"
               />
             </motion.a>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
-
 const Sponsors = () => {
   const logos = [
     "MOXA", "SIEMENS", "FORTINET", "PALO ALTO", "CISCO", "ABB", "ROCKWELL", "SCHNEIDER", "HONEYWELL", "KASPERSKY"
@@ -478,47 +499,83 @@ const Sponsors = () => {
 };
 
 const Countdown = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const events = [
+    { city: "Madrid", date: new Date("2026-04-30T09:00:00").getTime() },
+    { city: "Sevilla", date: new Date("2026-05-05T09:00:00").getTime() },
+    { city: "Bilbao", date: new Date("2026-05-07T09:00:00").getTime() },
+  ];
+
+  const calculateTimeLeft = (target) => {
+    const now = new Date().getTime();
+    const distance = target - now;
+
+    return {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState(events.map(e => calculateTimeLeft(e.date)));
 
   useEffect(() => {
-    const targetDate = new Date("2026-10-15T09:00:00").getTime();
-    
     const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-      
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
+      setTimeLeft(events.map(e => calculateTimeLeft(e.date)));
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="py-24 bg-primary border-y border-primary transition-colors duration-300">
+    <section className="py-16 bg-primary border-y border-primary transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-12">El evento comienza en:</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mb-16">
-          {[
-            { label: "Días", value: timeLeft.days },
-            { label: "Horas", value: timeLeft.hours },
-            { label: "Minutos", value: timeLeft.minutes },
-            { label: "Segundos", value: timeLeft.seconds },
-          ].map((item, i) => (
-            <div key={i} className="p-8 border border-primary brutal-card">
-              <div className="text-5xl md:text-7xl font-bold mb-2">{item.value.toString().padStart(2, '0')}</div>
-              <div className="text-[10px] font-condensed font-bold uppercase tracking-widest opacity-60">{item.label}</div>
+
+        <h2 className="text-2xl md:text-4xl font-bold mb-10">
+          Los eventos comienzan en:
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+
+          {events.map((event, index) => (
+            <div key={index} className="border border-primary p-6 brutal-card">
+
+              <div className="text-lg font-condensed font-bold uppercase tracking-widest mb-6">
+                {event.city}
+              </div>
+
+              <div className="grid grid-cols-4 gap-3">
+
+                {[
+                  { label: "D", value: timeLeft[index].days },
+                  { label: "H", value: timeLeft[index].hours },
+                  { label: "M", value: timeLeft[index].minutes },
+                  { label: "S", value: timeLeft[index].seconds },
+                ].map((item, i) => (
+                  <div key={i} className="p-3 border border-primary">
+                    <div className="text-2xl md:text-3xl font-bold">
+                      {item.value.toString().padStart(2, "0")}
+                    </div>
+                    <div className="text-[9px] font-condensed uppercase opacity-60">
+                      {item.label}
+                    </div>
+                  </div>
+                ))}
+
+              </div>
             </div>
           ))}
+
         </div>
-        <a href="#register" className="btn-primary inline-flex items-center gap-3 group">
+
+        <a
+          href="#register"
+          className="btn-primary inline-flex items-center gap-3 group mt-12"
+        >
           Registrarse ahora
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>
+
       </div>
     </section>
   );
@@ -570,7 +627,7 @@ const MapSection = () => (
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative h-[400px] md:h-[500px] border border-primary/20 grayscale hover:grayscale-0 transition-all duration-700 overflow-hidden"
+          className="relative h-[400px] md:h-[500px] border border-primary/20  transition-all duration-700 overflow-hidden"
         >
           {/* Interactive Map Iframe */}
           <iframe 
@@ -749,12 +806,12 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
       <div className="space-y-8">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-secondary flex items-center justify-center shrink-0">
-            <Shield className="text-primary w-5 h-5" />
-          </div>
-          <span className="text-2xl font-condensed font-bold text-heading tracking-tighter uppercase">
-            TEMPEL <span className="opacity-40">GROUP</span>
-          </span>
+          {/* Logo Tempel */}
+          <img 
+            src={logoTempel} 
+            alt="Tempel Group" 
+            className="h-8 w-auto object-contain"
+          />
         </div>
         <p className="text-sm text-primary font-light leading-relaxed">
           Expertos en soluciones tecnológicas industriales y ciberseguridad avanzada para la industria del futuro.
@@ -766,7 +823,7 @@ const Footer = () => (
         <div className="space-y-4 text-sm font-light">
           <a href="mailto:info@tempelgroup.com" className="flex items-center gap-3 hover:text-heading transition-colors">
             <Globe className="w-4 h-4" />
-            info@tempelgroup.com
+            leads@tempelgroup.com
           </a>
           <a href="tel:+34931234567" className="flex items-center gap-3 hover:text-heading transition-colors">
             <Phone className="w-4 h-4" />
@@ -818,14 +875,13 @@ export default function App() {
     <div className="min-h-screen selection:bg-heading selection:text-primary transition-colors duration-300">
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Hero />
-      <Metrics />
       <About />
       <Themes />
-      <Innovation />
-      <Agenda />
-      <Speakers />
       <Partners />
-      <Sponsors />
+      <Innovation />
+      <Agenda /> 
+      <Speakers />
+      {/*<Sponsors />*/}
       <Countdown />
       <MapSection />
       <PracticalInfo />

@@ -27,8 +27,14 @@ import React, { useState, useEffect } from "react";
 
 import logoTempel from "./assets/images/brand/logo/logotipo_tempelgroup.png";
 
-import logoCCI from "./assets/images/brand/logo/logotipo_tempelgroup.png";
-import logoMoxa from "./assets/images/brand/logo/logotipo_tempelgroup.png";
+import logoCCI from "./assets/images/brand/logo/logo-cci-pos-es.png";
+import logoMoxa from "./assets/images/brand/logo/Moxa_Logo_CMYK.png";
+
+
+import AlvaroBorges from "./assets/images/ponentes/alvaro_borges.png";
+import JoseValiente from "./assets/images/ponentes/jose_valiente.png";
+
+
 
 // --- Components ---
 
@@ -107,41 +113,53 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
 };
 
 const Hero = () => (
-  <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-40 px-4 sm:px-6 overflow-hidden cyber-grid">
-    <div className="max-w-7xl mx-auto relative z-10">
+  <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-20 px-6 md:px-12 xl:px-32 overflow-hidden cyber-grid">
+    
+    {/* 🔥 Contenedor más estrecho en desktop */}
+    <div className="max-w-5xl xl:max-w-6xl mx-auto relative z-10">
+      
       <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+        
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-3 border border-primary px-4 py-1.5 text-[10px] font-condensed font-bold tracking-[0.3em] text-primary mb-8 uppercase transition-colors duration-300">
-            <Calendar className="w-3 h-3" />
+          <div className="inline-flex items-center gap-3 border border-primary px-6 py-2 text-xs md:text-sm font-condensed font-bold tracking-[0.35em] text-primary mb-8 uppercase">
+            <Calendar className="w-4 h-4 md:w-5 md:h-5" />
             <span>Próxima Edición 2026</span>
           </div>
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold leading-[1] mb-8 transition-colors duration-300">
-            Ciberseguridad <br />
-            <span className="text-primary">Industrial & NIS2</span>
+
+          <h1 className="text-5xl sm:text-6xl md:text-6xl xl:text-6xl font-bold leading-[1] mb-8">
+            <strong>Ciberseguridad Industrial</strong> <br />
+            <span className="text-primary">& NIS2</span>
           </h1>
-          <p className="text-lg md:text-xl text-primary mb-10 leading-relaxed max-w-xl font-light transition-colors duration-300">
-            Preparando la industria del futuro: Convergencia IT/OT, cumplimiento normativo y resiliencia en infraestructuras críticas.
+
+          <p className="text-lg md:text-xl text-primary mb-10 leading-relaxed max-w-xl font-light">
+            Preparando la <strong>industria del futuro</strong>: 
+            <strong> Convergencia IT/OT</strong>, 
+            <strong> cumplimiento normativo</strong> y 
+            <strong> resiliencia en infraestructuras críticas</strong>.
           </p>
           
           <div className="flex flex-col gap-4 mb-12">
-            <div className="flex items-center gap-3 text-heading font-condensed font-bold uppercase tracking-widest text-sm">
+
+            <div className="flex items-center gap-3 font-condensed font-bold uppercase tracking-widest text-sm">
               <Calendar className="w-5 h-5 text-primary" />
-              <span>30 Abril · Madrid</span>
+              <span><strong>30 Abril</strong> · Madrid</span>
             </div>
 
-            <div className="flex items-center gap-3 text-heading font-condensed font-bold uppercase tracking-widest text-sm">
+            {/* 
+            <div className="flex items-center gap-3 font-condensed font-bold uppercase tracking-widest text-sm">
               <Calendar className="w-5 h-5 text-primary" />
-              <span>5 Mayo · Sevilla</span>
+              <span><strong>5 Mayo</strong> · Sevilla</span>
             </div>
 
-            <div className="flex items-center gap-3 text-heading font-condensed font-bold uppercase tracking-widest text-sm">
+            <div className="flex items-center gap-3 font-condensed font-bold uppercase tracking-widest text-sm">
               <Calendar className="w-5 h-5 text-primary" />
-              <span>7 Mayo · Bilbao</span>
+              <span><strong>7 Mayo</strong> · Bilbao</span>
             </div>
+            */}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
@@ -162,41 +180,75 @@ const Hero = () => (
           transition={{ duration: 1 }}
           className="relative"
         >
-          <div className="relative z-10 border border-primary p-2 transition-all duration-1000">
+          <div className="relative z-10 border border-primary p-2">
             <img 
               src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1200" 
-              alt="Cybersecurity Industrial" 
+              alt="Ciberseguridad industrial OT IT"
               className="w-full h-[400px] md:h-[600px] object-cover opacity-80"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 to-transparent pointer-events-none" />
           </div>
-          <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-primary transition-colors duration-300" />
-          <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-primary transition-colors duration-300" />
+
+          <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-primary" />
+          <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-primary" />
         </motion.div>
+
       </div>
     </div>
   </section>
 );
 
 
-
 const About = () => (
-  <section id="about" className="py-24 md:py-40 px-4 sm:px-6 bg-primary transition-colors duration-300">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-start">
+  <section id="about" className="py-12 md:py-20 px-6 md:px-12 xl:px-32 bg-primary">
+    
+    <div className="max-w-5xl xl:max-w-6xl mx-auto">
+      
+      <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-start">
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-7xl font-bold mb-10 leading-tight">Sobre el Evento</h2>
+          <h2 className="text-3xl md:text-5xl xl:text-6xl font-bold leading-tight">
+            Sobre el Evento
+          </h2>
+
           <div className="w-20 h-1 bg-heading mb-12" />
-          <p className="text-xl md:text-2xl text-heading font-light leading-relaxed mb-8">
-            Tras la gran acogida de nuestro encuentro en Barcelona, Tempel Group organiza esta jornada especializada para abordar la realidad de la ciberseguridad industrial.
+
+          <p className="text-xl md:text-1xl text-heading font-light leading-relaxed mb-8">
+            Tras la gran acogida en Barcelona,{" "}
+            <strong className="font-bold text-primary">
+              Tempel Group
+            </strong>{" "}
+            organiza esta jornada especializada para abordar la{" "}
+            <strong className="font-bold text-primary">
+              ciberseguridad industrial
+            </strong>.
           </p>
+
           <p className="text-lg text-primary font-light leading-relaxed mb-8">
-            El nuevo escenario industrial exige algo más que tecnología: requiere visión, criterio y colaboración. En esta sesión abordaremos los retos actuales de la ciberseguridad OT y cómo prepararse ante un entorno cada vez más conectado, más exigente y más regulado.
+            El nuevo escenario industrial exige algo más que tecnología: requiere{" "}
+            <strong className="font-semibold text-heading">
+              visión estratégica
+            </strong>,{" "}
+            <strong className="font-semibold text-heading">
+              criterio técnico
+            </strong>{" "}
+            y{" "}
+            <strong className="font-semibold text-heading">
+              colaboración
+            </strong>.
+            <br /><br />
+            En esta sesión abordaremos los retos actuales de la{" "}
+            <strong className="font-bold text-heading">
+              ciberseguridad OT
+            </strong>{" "}
+            y cómo prepararse ante un entorno cada vez más{" "}
+            <strong className="font-semibold text-heading">
+              conectado, exigente y regulado
+            </strong>.
           </p>
         </motion.div>
         
@@ -205,41 +257,96 @@ const About = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="space-y-12"
+          className="space-y-10"
         >
           <div className="p-8 border border-primary brutal-card">
-            <h3 className="text-2xl font-bold mb-4">Contexto NIS2</h3>
+            <h3 className="text-2xl font-bold mb-4">
+              Contexto{" "}
+              <span className="text-primary font-extrabold">
+                NIS2
+              </span>
+            </h3>
             <p className="text-primary font-light leading-relaxed">
-              La directiva NIS2 marca un antes y un después en la regulación de la ciberseguridad en Europa. Analizaremos qué implicaciones reales tiene para la industria y cómo cumplir con los nuevos estándares de resiliencia.
+              La directiva{" "}
+              <strong className="text-heading font-bold">
+                NIS2
+              </strong>{" "}
+              marca un antes y un después en la{" "}
+              <strong className="text-heading font-semibold">
+                regulación de la ciberseguridad en Europa
+              </strong>.
+              <br /><br />
+              Analizaremos sus implicaciones reales y cómo cumplir con los nuevos estándares de{" "}
+              <strong className="text-heading font-semibold">
+                resiliencia y protección industrial
+              </strong>.
             </p>
           </div>
+
           <div className="p-8 border border-primary brutal-card">
-            <h3 className="text-2xl font-bold mb-4">Objetivo del Evento</h3>
+            <h3 className="text-2xl font-bold mb-4">
+              Objetivo del Evento
+            </h3>
             <p className="text-primary font-light leading-relaxed">
-              Nuestro objetivo es ofrecer una visión útil y aplicable para ayudaros a entender el impacto regulatorio, identificar prioridades de protección y evaluar tecnologías de implantación.
+              Ofrecer una visión{" "}
+              <strong className="text-heading font-semibold">
+                práctica y aplicable
+              </strong>{" "}
+              para entender el impacto regulatorio, identificar{" "}
+              <strong className="text-heading font-semibold">
+                prioridades de ciberseguridad
+              </strong>{" "}
+              y evaluar{" "}
+              <strong className="text-heading font-semibold">
+                tecnologías de protección industrial
+              </strong>.
             </p>
           </div>
         </motion.div>
+
       </div>
     </div>
   </section>
 );
 
+
+
+
+
 const Themes = () => {
   const themes = [
-    { title: "Ciberseguridad Empresarial", icon: Lock, desc: "Protección integral de los activos digitales y la continuidad de negocio." },
-    { title: "Regulación NIS2", icon: FileText, desc: "Análisis profundo del marco normativo y estrategias de cumplimiento." },
-    { title: "Infraestructuras Críticas", icon: Shield, desc: "Seguridad avanzada para entornos industriales y servicios esenciales." },
-    { title: "Soluciones Tecnológicas", icon: Zap, desc: "Últimas innovaciones en detección, respuesta y prevención de amenazas." },
-    { title: "Gestión del Riesgo Digital", icon: Activity, desc: "Metodologías para identificar, evaluar y mitigar riesgos en la red." },
+    { 
+      title: "Ciberseguridad & NIS2", 
+      icon: Lock, 
+      desc: "Estrategias de <strong>ciberseguridad empresarial</strong> alineadas con la <strong>regulación NIS2</strong>, garantizando la protección de activos digitales y el cumplimiento normativo." 
+    },
+    { 
+      title: "Infraestructuras Críticas & Tecnología", 
+      icon: Shield, 
+      desc: "Protección de <strong>infraestructuras críticas</strong> mediante <strong>soluciones tecnológicas avanzadas</strong> en detección, respuesta y prevención de amenazas." 
+    },
+    { 
+      title: "Gestión del Riesgo Digital", 
+      icon: Activity, 
+      desc: "Metodologías para <strong>identificar, evaluar y mitigar riesgos</strong> en entornos industriales y redes corporativas." 
+    },
   ];
 
   return (
-    <section id="themes" className="py-24 md:py-40 px-4 sm:px-6 bg-secondary text-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
+    <section id="themes" className="py-12 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+      
+      {/* 🔥 Contenedor alineado con Hero/About */}
+      <div className="max-w-5xl xl:max-w-6xl mx-auto">
+        
         <div className="text-center mb-20">
-          <h2 className="text-primary text-4xl md:text-7xl font-bold mb-6">Temáticas del Evento</h2>
-          <p className="text-primary/60 max-w-2xl mx-auto font-light">Áreas principales que definen la agenda de esta edición especializada.</p>
+          <h2 className="text-3xl md:text-5xl xl:text-6xl font-bold mb-6">
+            Temáticas del Evento
+          </h2>
+          <p className="text-primary/60 max-w-2xl mx-auto font-light">
+            Áreas clave en <strong className="text-primary">ciberseguridad industrial</strong>, 
+            <strong className="text-primary"> cumplimiento NIS2</strong> y 
+            <strong className="text-primary"> protección de infraestructuras críticas</strong>.
+          </p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -253,94 +360,208 @@ const Themes = () => {
               className="p-10 border border-primary/20 hover:border-primary transition-all group"
             >
               <theme.icon className="w-10 h-10 mb-8 opacity-40 group-hover:opacity-100 transition-opacity" />
-              <h3 className="text-2xl font-bold mb-4 text-primary">{theme.title}</h3>
-              <p className="text-primary/60 font-light leading-relaxed">{theme.desc}</p>
+
+              <h3 className="text-2xl font-bold mb-4 text-primary">
+                {theme.title}
+              </h3>
+
+              <p 
+                className="text-primary/60 font-light leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: theme.desc }}
+              />
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
 
+
+
+
+
+
+
 const Innovation = () => (
-  <section className="py-24 md:py-40 px-4 sm:px-6 bg-primary transition-colors duration-300">
-    <div className="max-w-7xl mx-auto">
+  <section className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-primary transition-colors duration-300">
+    
+    <div className="max-w-5xl xl:max-w-6xl mx-auto">
+      
       <div className="flex flex-col lg:flex-row gap-16 items-center">
+        
         <div className="lg:w-1/2">
           <h2 className="text-4xl md:text-6xl font-bold mb-8">¿Por qué asistir?</h2>
+
           <p className="text-lg text-primary font-light leading-relaxed mb-10">
-            Descubre las tecnologías que están transformando la seguridad en entornos productivos. Un espacio dedicado a la vanguardia tecnológica.
+            Descubre las <strong className="text-heading font-semibold">tecnologías que están transformando la ciberseguridad industrial</strong> en entornos productivos. 
+            Un espacio dedicado a la <strong className="text-heading font-semibold">vanguardia tecnológica en IT/OT</strong>.
           </p>
+
           <div className="space-y-8">
             {[
-              { title: "Tecnologías Presentadas", icon: Lightbulb, desc: "Hardware y software de última generación para entornos OT." },
-              { title: "Soluciones de Ciberseguridad", icon: Shield, desc: "Sistemas de protección específicos para redes industriales." },
-              { title: "Tendencias del Sector", icon: Globe, desc: "Hacia dónde se dirige la ciberseguridad industrial global." }
+              { 
+                title: "Tecnologías Presentadas", 
+                icon: Lightbulb, 
+                desc: "Hardware y software de última generación para <strong>entornos OT</strong>." 
+              },
+              { 
+                title: "Soluciones de Ciberseguridad", 
+                icon: Shield, 
+                desc: "Sistemas de protección específicos para <strong>redes industriales</strong>." 
+              },
+              { 
+                title: "Tendencias del Sector", 
+                icon: Globe, 
+                desc: "Evolución de la <strong>ciberseguridad industrial global</strong>." 
+              }
             ].map((item, i) => (
               <div key={i} className="flex gap-6">
+                
                 <div className="w-12 h-12 border border-primary flex items-center justify-center shrink-0">
                   <item.icon className="w-6 h-6 text-primary" />
                 </div>
+
                 <div>
                   <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                  <p className="text-primary font-light text-sm">{item.desc}</p>
+                  <p 
+                    className="text-primary font-light text-sm leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: item.desc }}
+                  />
                 </div>
+
               </div>
             ))}
           </div>
         </div>
+
         <div className="lg:w-1/2 grid grid-cols-2 gap-4">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" alt="Tech 1" className="w-full h-64 object-cover  transition-all" referrerPolicy="no-referrer" />
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Tech 2" className="w-full h-64 object-cover  transition-all mt-8" referrerPolicy="no-referrer" />
+          <img 
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" 
+            alt="Tecnología ciberseguridad industrial" 
+            className="w-full h-64 object-cover"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" 
+            alt="Redes industriales seguridad OT" 
+            className="w-full h-64 object-cover mt-8"
+          />
         </div>
+
       </div>
     </div>
   </section>
 );
 
+
+
+
+
+
+
+
+
+
+
 const Agenda = () => {
   const sessions = [
-    { time: "09:00 - 10:00", title: "Situación actual de la ciberseguridad", desc: "Análisis de amenazas globales y su impacto en la industria local." },
-    { time: "10:00 - 11:30", title: "Normativa NIS2", desc: "Sesión técnica sobre cumplimiento, plazos y responsabilidades legales." },
-    { time: "11:30 - 12:00", title: "Coffee Break & Networking", desc: "Espacio de intercambio entre profesionales y expertos." },
-    { time: "12:00 - 13:30", title: "Soluciones Tecnológicas", desc: "Demo práctica de herramientas de protección IT/OT convergentes." },
-    { time: "13:30 - 14:30", title: "Casos Reales", desc: "Presentación de proyectos de éxito y lecciones aprendidas." },
-    { time: "14:30 - 15:30", title: "Preguntas y Networking", desc: "Cierre de la jornada con debate abierto y conclusiones." },
+    {
+      time: "09:30 - 10:00",
+      title: "Bienvenida y acreditación",
+      desc: "Recepción de asistentes y entrega de acreditaciones."
+    },
+    {
+      time: "10:00 - 10:05",
+      title: "Introducción",
+      desc: "Jordi Gangolells (Marketing Manager, Tempel Group)."
+    },
+    {
+      time: "10:05 - 10:20",
+      title: "Evolución, experiencia y compromiso con el futuro del entorno industrial",
+      desc: "Gemma Garcés (Sales Manager, Tempel Group)."
+    },
+    {
+      time: "10:20 - 10:50",
+      title: "Aprendiendo de los errores al cumplir NIS2 en un entorno OT",
+      desc: "José Valiente (Director General, CCI)."
+    },
+    {
+      time: "10:50 - 11:50",
+      title: "Protegiendo Activos OT en la Convergencia IT/OT: IEC 62443 en Acción",
+      desc: "Francisco Herrero (Channel Sales Manager, MOXA)."
+    },
+    {
+      time: "11:50 - 12:00",
+      title: "Coffee Break",
+      desc: "Pausa para café y networking."
+    },
+    {
+      time: "12:00 - 13:00",
+      title: "Demostración Producto Moxa",
+      desc: "Álvaro Borges (Senior Lead Field Application Engineer, MOXA)."
+    },
+    {
+      time: "13:00 - 14:00",
+      title: "Mesa redonda - Seguridad OT integral: regulación, tecnología y personas",
+      desc: "Francisco Herrero, Álvaro Borges, José Valiente y Juan Robles."
+    },
+    {
+      time: "14:00 - 15:00",
+      title: "Lunch & Networking: Conectando la Ciberseguridad",
+      desc: "Espacio final para networking entre profesionales."
+    },
   ];
 
   return (
-    <section id="agenda" className="py-24 md:py-40 px-4 sm:px-6 bg-secondary text-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto text-center">
-        <div className="mb-20">
-          <h2 className="text-primary text-4xl md:text-7xl font-bold mb-6">Agenda del Evento</h2>
-          <div className="w-20 h-1 bg-primary" />
+    <section id="agenda" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+      
+      <div className="max-w-5xl xl:max-w-6xl mx-auto text-center">
+        
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-6xl xl:text-6xl font-bold mb-6">
+            Agenda del Evento
+          </h2>
+          <div className="w-16 h-px bg-primary mx-auto opacity-40" />
         </div>
         
-        <div className="space-y-6">
+        <div className="space-y-4">
           {sessions.map((session, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.05 }}
               className="group flex flex-col md:flex-row border border-primary/20 hover:border-primary transition-all"
             >
-              <div className="md:w-1/4 p-8 bg-primary/5 border-b md:border-b-0 md:border-r border-primary/20 font-condensed font-bold text-xl text-primary">
+              <div className="md:w-1/4 p-6 bg-primary/5 border-b md:border-b-0 md:border-r border-primary/20 font-condensed font-bold text-base text-primary">
                 {session.time}
               </div>
-              <div className="md:w-3/4 p-8">
-                <h3 className="text-2xl font-bold mb-2 text-primary">{session.title}</h3>
-                <p className="text-primary/60 font-light">{session.desc}</p>
+
+              <div className="md:w-3/4 p-6 text-left">
+                <h3 className="text-xl font-semibold mb-1 text-primary">
+                  {session.title}
+                </h3>
+                <p className="text-primary/60 font-light text-sm leading-relaxed">
+                  {session.desc}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
+
+
+
+
+
+
+
 
 const Speakers = () => {
   const speakers = [
@@ -353,103 +574,124 @@ const Speakers = () => {
     },
     { 
       name: "José Valiente", 
-      role: "Por definir", 
+      role: "Ciberseguridad Industrial", 
       company: "CCI", 
-      desc: "Pendiente de información.", 
-      img: "https://picsum.photos/seed/jose/400/400" 
+      desc: "Comunico y comparto experiencias en ciberseguridad industrial para crecer aliados.", 
+      img: JoseValiente
     },
     { 
       name: "Francisco Herrero", 
-      role: "Por definir", 
+      role: "Channel sales manager", 
       company: "Moxa", 
       desc: "Pendiente de información.", 
       img: "https://picsum.photos/seed/francisco/400/400" 
     },
-    { 
-      name: "Álvaro Borges", 
-      role: "Por definir", 
-      company: "Moxa", 
-      desc: "Pendiente de información.", 
-      img: "https://picsum.photos/seed/alvaro/400/400" 
+    {
+      name: "Álvaro Borges",
+      role: "Senior Lead Field Application Engineer",
+      company: "MOXA",
+      desc: "Especialista en soluciones industriales y conectividad OT, con amplia experiencia en soporte técnico avanzado y despliegue de infraestructuras en entornos industriales.",
+      img: AlvaroBorges
     },
   ];
 
   return (
-    <section id="speakers" className="py-24 md:py-40 px-4 sm:px-6 bg-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-7xl font-bold mb-6">Ponentes</h2>
-          <p className="text-primary max-w-2xl mx-auto font-light">
-            Líderes de opinión y expertos técnicos que compartirán su conocimiento.
+    <section id="speakers" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-primary">
+      
+      <div className="max-w-5xl xl:max-w-6xl mx-auto">
+        
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl xl:text-6xl font-bold mb-6">
+            Ponentes
+          </h2>
+          <p className="text-primary/60 max-w-2xl mx-auto font-light">
+            <strong className="text-heading">Expertos en ciberseguridad industrial</strong> y 
+            <strong className="text-heading"> tecnologías OT/IT</strong> que compartirán su conocimiento.
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* 🔥 md = 2x2 */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {speakers.map((speaker, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="brutal-card group overflow-hidden"
+              transition={{ delay: i * 0.08 }}
+              className="border border-primary/20 group overflow-hidden"
             >
-              <div className="aspect-square overflow-hidden transition-all duration-500">
-                <img src={speaker.img} alt={speaker.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+              <div className="aspect-square overflow-hidden">
+                <img 
+                  src={speaker.img} 
+                  alt={speaker.name} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-1">{speaker.name}</h3>
-                <div className="text-[10px] font-condensed font-bold uppercase tracking-widest text-primary mb-4">
+
+              <div className="p-6 text-left">
+                <h3 className="text-lg font-bold mb-1">
+                  {speaker.name}
+                </h3>
+
+                <div className="text-[11px] font-condensed font-bold uppercase tracking-widest text-primary/80 mb-3">
                   {speaker.role} @ {speaker.company}
                 </div>
-                <p className="text-xs text-primary font-light leading-relaxed opacity-60 group-hover:opacity-100 transition-opacity">
+
+                <p className="text-xs text-primary/60 font-light leading-relaxed group-hover:text-primary transition-colors">
                   {speaker.desc}
                 </p>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
 
+
+
+
 const Partners = () => {
   const partners = [
     { name: "CCI", logo: logoCCI, url: "https://www.cci-es.org/" },
-    { name: "MOXA", logo: logoMoxa, url: "https://www.moxa.com/" }
+    { name: "MOXA", logo: logoMoxa, url: "https://www.moxa.com/", className: "w-1/2" }
   ];
 
   return (
-    <section className="py-20 bg-primary border-y border-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="py-24 md:py-32 px-6 md:px-12 xl:px-32 bg-primary border-y border-primary">
+      
+      {/* 🔥 Contenedor alineado con todo */}
+      <div className="max-w-5xl xl:max-w-6xl mx-auto">
 
-        {/* Evento organizado por */}
-        <div className="text-center mb-16">
-          <h2 className="text-xs font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-40 mb-4">
+        {/* ORGANIZADO POR */}
+        <div className="text-center mb-20">
+          <h2 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-60 mb-6">
             Evento organizado por
           </h2>
 
-          <div className="flex justify-center items-center mb-6">
+          <div className="flex justify-center items-center mb-8">
             <img
               src={logoTempel}
               alt="Tempel Group"
-              className="h-14 md:h-16 w-auto object-contain"
+              className="h-16 md:h-20 w-auto object-contain"
             />
           </div>
 
-          <div className="w-12 h-px bg-primary mx-auto opacity-20" />
+          <div className="w-16 h-px bg-primary mx-auto opacity-30" />
         </div>
 
-        {/* Partners */}
-        <div className="text-center mb-12">
-          <h2 className="text-xs font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-40 mb-4">
-            Partners Estratégicos
+        {/* PARTNERS */}
+        <div className="text-center mb-16">
+          <h2 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-60">
+              Partners y Colaboradores
           </h2>
-          <div className="w-12 h-px bg-primary mx-auto opacity-20" />
+          <div className="w-16 h-px bg-primary mx-auto opacity-30" />
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
+        <div className="flex flex-wrap justify-center items-center gap-20 md:gap-32">
           {partners.map((partner) => (
             <motion.a
               key={partner.name}
@@ -462,7 +704,7 @@ const Partners = () => {
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="h-12 md:h-16 w-auto object-contain"
+                className={`h-14 md:h-20 object-contain ${partner.className || "w-auto"}`}
               />
             </motion.a>
           ))}
@@ -472,6 +714,424 @@ const Partners = () => {
     </section>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+const PracticalInfo = () => {
+  const events = [
+    {
+      city: "Madrid",
+      date: "15 Oct 2026",
+      time: "09:00 - 15:30",
+      location: "Ubicación pendiente de confirmar",
+      venue: "Centro Tecnológico Madrid",
+      mapUrl: "https://maps.google.com/?q=madrid",
+      iframe: "https://www.google.com/maps?q=madrid&output=embed",
+    },
+    /*
+    {
+      city: "Bilbao",
+      date: "22 Oct 2026",
+      time: "09:00 - 15:30",
+      location: "Ubicación pendiente de confirmar",
+      venue: "Espacio Innovación Bilbao",
+      mapUrl: "https://maps.google.com/?q=bilbao",
+      iframe: "https://www.google.com/maps?q=bilbao&output=embed",
+    },
+    {
+      city: "Sevilla",
+      date: "29 Oct 2026",
+      time: "09:00 - 15:30",
+      location: "Ubicación pendiente de confirmar",
+      venue: "Centro de Convenciones Sevilla",
+      mapUrl: "https://maps.google.com/?q=sevilla",
+      iframe: "https://www.google.com/maps?q=sevilla&output=embed",
+    },
+    */
+  ];
+
+  const faqs = [
+    { q: "¿Es el evento gratuito?", a: "Sí, es un evento exclusivo para profesionales del sector industrial previo registro." },
+    { q: "¿Se entregará certificado?", a: "Sí, recibirás un certificado digital de participación." },
+    { q: "¿Habrá traducción?", a: "Las ponencias internacionales contarán con traducción simultánea." },
+  ];
+
+  return (
+    <section className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-primary">
+      
+      <div className="max-w-5xl xl:max-w-6xl mx-auto">
+
+        {/* HEADER */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6">
+            Información Práctica
+          </h2>
+          <p className="text-primary/60 font-light max-w-2xl mx-auto">
+            Evento presencial en <strong className="text-heading">Madrid</strong>, 
+            centrado en <strong className="text-heading">ciberseguridad industrial</strong> y 
+            <strong className="text-heading"> entornos OT</strong>.
+          </p>
+        </div>
+
+        {/* EVENT + MAP */}
+        <div className="space-y-10 mb-20">
+          {events.map((event, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="border border-primary/20 overflow-hidden"
+            >
+              {/* MAP */}
+              <div className="h-[280px] md:h-[350px] relative">
+                <iframe
+                  src={event.iframe}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  title={event.city}
+                  className="opacity-80"
+                />
+                <div className="absolute inset-0 pointer-events-none border-[10px] border-primary/10" />
+              </div>
+
+              {/* INFO */}
+              <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8 text-left">
+                
+                {/* LEFT */}
+                <div className="space-y-4">
+                  <h3 className="text-xl md:text-2xl font-bold">
+                    {event.city}
+                  </h3>
+
+                  <div className="flex items-center gap-3 text-sm">
+                    <Calendar className="w-4 h-4" />
+                    <span>{event.date}</span>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-sm">
+                    <Clock className="w-4 h-4" />
+                    <span>{event.time}</span>
+                  </div>
+
+                  <div className="flex items-start gap-3 text-sm">
+                    <MapPin className="w-4 h-4 mt-1" />
+                    <span>{event.location}</span>
+                  </div>
+                </div>
+
+                {/* RIGHT */}
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Building2 className="w-5 h-5 mt-1" />
+                    <div>
+                      <p className="font-semibold">{event.venue}</p>
+                      <p className="text-primary/60 text-sm">
+                        {event.location}
+                      </p>
+                    </div>
+                  </div>
+
+                  <a
+                    href={event.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                  >
+                    Cómo llegar
+                    <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* FAQ */}
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-lg md:text-xl xl:text-4xl font-bold mb-10 uppercase tracking-widest text-center">
+            Preguntas Frecuentes
+          </h2>
+
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border border-primary/20 p-6">
+                <h4 className="font-bold mb-2 flex items-center gap-2">
+                  <ChevronRight className="w-4 h-4" />
+                  {faq.q}
+                </h4>
+                <p className="text-primary/60 text-sm font-light">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+
+
+const RegistrationForm = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellidos: "",
+    empresa: "",
+    cargo: "",
+    email: "",
+    telefono: "",
+    legal: false,
+    newsletter: false,
+    honeypot: ""
+  });
+
+  const sanitize = (value: string) => value.replace(/[<>]/g, "").trim();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : sanitize(value)
+    });
+  };
+
+  const validate = () => {
+    if (!formData.nombre || !formData.apellidos) return false;
+    if (!formData.cargo) return false;
+    if (!formData.email.includes("@")) return false;
+    if (!formData.telefono) return false;
+    if (!formData.legal) return false;
+    if (formData.honeypot !== "") return false;
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validate()) {
+      alert("Completa todos los campos obligatorios");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch("/contact.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (data.ok) setSubmitted(true);
+      else alert("Error enviando formulario");
+    } catch (err) {
+      console.error(err);
+      alert("Error de conexión");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-32 px-6 md:px-12 xl:px-32 text-center max-w-2xl mx-auto">
+        <div className="w-20 h-20 border border-heading flex items-center justify-center mx-auto mb-8">
+          <CheckCircle2 className="text-heading w-10 h-10" />
+        </div>
+        <h3 className="text-4xl font-bold mb-6">Reserva Confirmada</h3>
+        <p className="text-primary text-xl font-light">
+          Gracias por registrarte. Recibirás un email con los detalles del evento.
+        </p>
+      </motion.div>
+    );
+  }
+
+  return (
+    <section id="register" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+      
+      <div className="max-w-5xl xl:max-w-6xl mx-auto">
+
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 uppercase">
+            Registro Profesional
+          </h2>
+          <p className="text-primary/60 font-light">
+            Completa el formulario para reservar tu plaza.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-10">
+
+          {/* honeypot */}
+          <input type="text" name="honeypot" onChange={handleChange} style={{ display: "none" }} />
+
+          <div className="grid sm:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                Nombre *
+              </label>
+              <input name="nombre" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+            </div>
+
+            <div className="space-y-4">
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                Apellidos *
+              </label>
+              <input name="apellidos" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                Empresa
+              </label>
+              <input name="empresa" onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+            </div>
+
+            <div className="space-y-4">
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                Cargo *
+              </label>
+              <input name="cargo" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                Email Profesional *
+              </label>
+              <input type="email" name="email" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+            </div>
+
+            <div className="space-y-4">
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                Teléfono *
+              </label>
+              <input type="tel" name="telefono" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+            </div>
+          </div>
+
+          {/* LEGAL */}
+          <div className="space-y-4">
+            <div className="flex items-start gap-4">
+              <input type="checkbox" name="legal" required onChange={handleChange} className="mt-1.5 accent-primary" />
+              <span className="text-xs text-primary/60 font-light leading-relaxed">
+                Acepto el tratamiento de datos y las{" "}
+                <a href="/aviso-legal.html" className="underline">condiciones legales</a>,{" "}
+                <a href="/politica-privacidad.html" className="underline">política de privacidad</a> y{" "}
+                <a href="/cookies.html" className="underline">cookies</a>.
+              </span>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <input type="checkbox" name="newsletter" onChange={handleChange} className="mt-1.5 accent-primary" />
+              <span className="text-xs text-primary/60 font-light leading-relaxed">
+                Deseo recibir comunicaciones informativas sobre eventos y novedades.
+              </span>
+            </div>
+          </div>
+
+          {/* BOTÓN */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-6 bg-primary text-secondary border border-primary font-condensed font-bold uppercase tracking-[0.4em] text-xl hover:opacity-90 transition-all flex items-center justify-center gap-4 group"
+          >
+            {loading ? "Enviando..." : "Reservar Plaza"}
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+          </button>
+
+        </form>
+      </div>
+    </section>
+  );
+};
+
+
+
+const Footer = () => (
+  <footer className="py-20 px-4 sm:px-6 bg-primary border-t border-primary transition-colors duration-300">
+    <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
+      <div className="space-y-8">
+        <div className="flex items-center gap-2">
+          {/* Logo Tempel */}
+          <img 
+            src={logoTempel} 
+            alt="Tempel Group" 
+            className="h-8 w-auto object-contain"
+          />
+        </div>
+        <p className="text-sm text-primary font-light leading-relaxed">
+          Expertos en soluciones tecnológicas industriales y ciberseguridad avanzada para la industria del futuro.
+        </p>
+      </div>
+      
+      <div className="space-y-6">
+        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Contacto</h4>
+        <div className="space-y-4 text-sm font-light">
+          <a href="mailto:info@tempelgroup.com" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Globe className="w-4 h-4" />
+            leads@tempelgroup.com
+          </a>
+          <a href="tel:+34931234567" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Phone className="w-4 h-4" />
+            +34 93 123 45 67
+          </a>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Social</h4>
+        <div className="flex gap-6">
+          <a href="#" className="hover:text-heading transition-colors">LinkedIn</a>
+          <a href="#" className="hover:text-heading transition-colors">Twitter</a>
+          <a href="#" className="hover:text-heading transition-colors">YouTube</a>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Legal</h4>
+        <div className="space-y-4 text-sm font-light">
+          <a href="#" className="block hover:text-heading transition-colors">Privacidad</a>
+          <a href="#" className="block hover:text-heading transition-colors">Cookies</a>
+          <a href="#" className="block hover:text-heading transition-colors">Aviso Legal</a>
+        </div>
+      </div>
+    </div>
+    <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-primary/30 text-[10px] uppercase tracking-[0.4em] text-primary opacity-40">
+      © {new Date().getFullYear()} Tempel Group. Todos los derechos reservados.
+    </div>
+  </footer>
+);
+
+
+
+
+{/* non-used components 
 const Sponsors = () => {
   const logos = [
     "MOXA", "SIEMENS", "FORTINET", "PALO ALTO", "CISCO", "ABB", "ROCKWELL", "SCHNEIDER", "HONEYWELL", "KASPERSKY"
@@ -581,280 +1241,110 @@ const Countdown = () => {
   );
 };
 
-const MapSection = () => (
-  <section className="py-24 md:py-40 px-4 sm:px-6 bg-secondary transition-colors duration-300">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-primary">Ubicación del Evento</h2>
-          <p className="text-lg text-primary/60 font-light leading-relaxed mb-8">
-            El evento se celebrará en el corazón tecnológico de Madrid, con excelentes conexiones de transporte y servicios de primer nivel.
-          </p>
-          <div className="space-y-6">
-            <div className="flex items-start gap-4">
-              <MapPin className="w-6 h-6 text-primary shrink-0 mt-1" />
-              <div>
-                <h4 className="text-xl font-bold text-primary">Centro de Convenciones IFEMA</h4>
-                <p className="text-primary/60 font-light">Av. del Partenón, 5, 28042 Madrid, España</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Building2 className="w-6 h-6 text-primary shrink-0 mt-1" />
-              <div>
-                <h4 className="text-xl font-bold text-primary">Pabellón de Innovación</h4>
-                <p className="text-primary/60 font-light">Sala de Conferencias 4.1</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10">
-            <a 
-              href="https://maps.app.goo.gl/..." 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-3"
-            >
-              Cómo llegar
-              <ChevronRight className="w-5 h-5" />
-            </a>
-          </div>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="relative h-[400px] md:h-[500px] border border-primary/20  transition-all duration-700 overflow-hidden"
-        >
-          {/* Interactive Map Iframe */}
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3035.747144414328!2d-3.619623623439444!3d40.45871297143247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422f3600000001%3A0x8683e3903102489e!2sIFEMA%20MADRID!5e0!3m2!1ses!2ses!4v1710150000000!5m2!1ses!2ses" 
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Ubicación IFEMA Madrid"
-            className="opacity-70 group-hover:opacity-100 transition-opacity"
-          />
-          <div className="absolute inset-0 pointer-events-none border-[20px] border-secondary/20" />
-        </motion.div>
-      </div>
-    </div>
-  </section>
-);
 
-const PracticalInfo = () => {
-  const faqs = [
-    { q: "¿Es el evento gratuito?", a: "Sí, es un evento exclusivo para profesionales del sector industrial previo registro y confirmación." },
-    { q: "¿Se entregará certificado de asistencia?", a: "Sí, todos los asistentes recibirán un certificado digital de participación." },
-    { q: "¿Habrá traducción simultánea?", a: "Las ponencias internacionales contarán con traducción simultánea al español." },
+
+const MapSection = () => {
+  const locations = [
+    {
+      city: "Madrid",
+      venue: "Centro Tecnológico Madrid",
+      address: "Ubicación pendiente de confirmar",
+      mapUrl: "https://maps.google.com/?q=madrid",
+      iframe: "https://www.google.com/maps?q=madrid&output=embed",
+    },
+    /*
+    {
+      city: "Bilbao",
+      venue: "Espacio Innovación Bilbao",
+      address: "Ubicación pendiente de confirmar",
+      mapUrl: "https://maps.google.com/?q=bilbao",
+      iframe: "https://www.google.com/maps?q=bilbao&output=embed",
+    },
+    {
+      city: "Sevilla",
+      venue: "Centro de Convenciones Sevilla",
+      address: "Ubicación pendiente de confirmar",
+      mapUrl: "https://maps.google.com/?q=sevilla",
+      iframe: "https://www.google.com/maps?q=sevilla&output=embed",
+    },
+    
   ];
 
   return (
-    <section className="py-24 md:py-40 px-4 sm:px-6 bg-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-20">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-12">Información Práctica</h2>
-            <div className="space-y-8">
-              <div className="flex gap-6">
-                <Calendar className="w-6 h-6 text-primary shrink-0" />
-                <div>
-                  <h4 className="text-xl font-bold mb-1">Fecha</h4>
-                  <p className="text-primary font-light">15 de Octubre, 2026</p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <Clock className="w-6 h-6 text-primary shrink-0" />
-                <div>
-                  <h4 className="text-xl font-bold mb-1">Horario</h4>
-                  <p className="text-primary font-light">09:00 - 15:30 (CET)</p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <Globe className="w-6 h-6 text-primary shrink-0" />
-                <div>
-                  <h4 className="text-xl font-bold mb-1">Modalidad</h4>
-                  <p className="text-primary font-light">Presencial (Madrid) & Streaming Online</p>
-                </div>
-              </div>
-              <div className="flex gap-6">
-                <MapPin className="w-6 h-6 text-primary shrink-0" />
-                <div>
-                  <h4 className="text-xl font-bold mb-1">Lugar</h4>
-                  <p className="text-primary font-light">Centro de Convenciones IFEMA / Plataforma Digital</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 className="text-2xl font-bold mb-10 uppercase tracking-widest">Preguntas Frecuentes</h3>
-            <div className="space-y-6">
-              {faqs.map((faq, i) => (
-                <div key={i} className="p-6 border border-primary brutal-card">
-                  <h4 className="font-bold mb-3 flex items-center gap-3">
-                    <ChevronRight className="w-4 h-4 text-primary" />
-                    {faq.q}
-                  </h4>
-                  <p className="text-sm text-primary font-light leading-relaxed pl-7">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const RegistrationForm = () => {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="py-32 px-4 sm:px-6 text-center max-w-2xl mx-auto"
-      >
-        <div className="w-20 h-20 border border-heading flex items-center justify-center mx-auto mb-8">
-          <CheckCircle2 className="text-heading w-10 h-10" />
-        </div>
-        <h3 className="text-4xl font-bold mb-6">Reserva Confirmada</h3>
-        <p className="text-primary text-xl font-light">
-          Gracias por registrarte. En breve recibirás un email con los detalles de acceso y la agenda completa.
-        </p>
-      </motion.div>
-    );
-  }
-
-  return (
-    <section id="register" className="py-24 md:py-40 px-4 sm:px-6 bg-secondary text-primary transition-colors duration-300">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-primary text-4xl md:text-7xl font-bold mb-6 uppercase">Registro Profesional</h2>
-          <p className="text-primary/60 font-light">Completa el formulario para reservar tu plaza en el evento.</p>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-10">
-          <div className="grid sm:grid-cols-2 gap-10">
-            <div className="space-y-4">
-              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">Nombre</label>
-              <input required type="text" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
-            </div>
-            <div className="space-y-4">
-              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">Apellidos</label>
-              <input required type="text" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
-            </div>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 gap-10">
-            <div className="space-y-4">
-              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">Empresa</label>
-              <input required type="text" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
-            </div>
-            <div className="space-y-4">
-              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">Cargo</label>
-              <input required type="text" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
-            </div>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 gap-10">
-            <div className="space-y-4">
-              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">Email Profesional</label>
-              <input required type="email" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
-            </div>
-            <div className="space-y-4">
-              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">Teléfono</label>
-              <input required type="tel" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <input required type="checkbox" id="rgpd" className="mt-1.5 accent-primary" />
-            <label htmlFor="rgpd" className="text-xs text-primary/60 font-light leading-relaxed">
-              Acepto la política de privacidad y el tratamiento de mis datos para la gestión del evento conforme al RGPD.
-            </label>
-          </div>
-          
-          <button 
-            type="submit"
-            className="w-full py-6 bg-primary text-secondary font-condensed font-bold uppercase tracking-[0.4em] text-xl hover:opacity-90 transition-all flex items-center justify-center gap-4 group"
-          >
-            Reservar Plaza
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-          </button>
-        </form>
-      </div>
-    </section>
-  );
-};
-
-const Footer = () => (
-  <footer className="py-20 px-4 sm:px-6 bg-primary border-t border-primary transition-colors duration-300">
-    <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
-      <div className="space-y-8">
-        <div className="flex items-center gap-2">
-          {/* Logo Tempel */}
-          <img 
-            src={logoTempel} 
-            alt="Tempel Group" 
-            className="h-8 w-auto object-contain"
-          />
-        </div>
-        <p className="text-sm text-primary font-light leading-relaxed">
-          Expertos en soluciones tecnológicas industriales y ciberseguridad avanzada para la industria del futuro.
-        </p>
-      </div>
+    <section className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary">
       
-      <div className="space-y-6">
-        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Contacto</h4>
-        <div className="space-y-4 text-sm font-light">
-          <a href="mailto:info@tempelgroup.com" className="flex items-center gap-3 hover:text-heading transition-colors">
-            <Globe className="w-4 h-4" />
-            leads@tempelgroup.com
-          </a>
-          <a href="tel:+34931234567" className="flex items-center gap-3 hover:text-heading transition-colors">
-            <Phone className="w-4 h-4" />
-            +34 93 123 45 67
-          </a>
-        </div>
-      </div>
+      <div className="max-w-5xl xl:max-w-6xl mx-auto">
+        
 
-      <div className="space-y-6">
-        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Social</h4>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-heading transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-heading transition-colors">Twitter</a>
-          <a href="#" className="hover:text-heading transition-colors">YouTube</a>
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 text-primary">
+            Ubicación del Evento
+          </h2>
+          <p className="text-primary/60 font-light max-w-2xl mx-auto">
+            Evento presencial en <strong className="text-heading">Madrid</strong>, 
+            en un entorno orientado a la <strong className="text-heading">ciberseguridad industrial</strong>.
+          </p>
         </div>
-      </div>
 
-      <div className="space-y-6">
-        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Legal</h4>
-        <div className="space-y-4 text-sm font-light">
-          <a href="#" className="block hover:text-heading transition-colors">Privacidad</a>
-          <a href="#" className="block hover:text-heading transition-colors">Cookies</a>
-          <a href="#" className="block hover:text-heading transition-colors">Aviso Legal</a>
+        <div className="grid md:grid-cols-1 gap-10">
+          {locations.map((loc, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group border border-primary/20 hover:border-primary transition-all duration-500 overflow-hidden"
+            >
+              <div className="h-[280px] md:h-[350px] relative">
+                <iframe
+                  src={loc.iframe}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  title={loc.city}
+                  className="opacity-80 group-hover:opacity-100 transition-opacity"
+                />
+                <div className="absolute inset-0 pointer-events-none border-[10px] border-secondary/20" />
+              </div>
+
+  
+              <div className="p-6 md:p-8 space-y-4 text-left">
+                <h3 className="text-xl md:text-2xl font-bold text-primary">
+                  {loc.city}
+                </h3>
+
+                <div className="flex items-start gap-3">
+                  <Building2 className="w-5 h-5 text-primary mt-1" />
+                  <div>
+                    <p className="font-semibold text-primary">{loc.venue}</p>
+                    <p className="text-primary/60 text-sm font-light">
+                      {loc.address}
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href={loc.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
+                >
+                  Cómo llegar
+                  <ChevronRight className="w-4 h-4" />
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
-    </div>
-    <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-primary/30 text-[10px] uppercase tracking-[0.4em] text-primary opacity-40">
-      © {new Date().getFullYear()} Tempel Group. Todos los derechos reservados.
-    </div>
-  </footer>
-);
+    </section>
+  );
+};
+
+*/}
 
 export default function App() {
   const [theme, setTheme] = useState('light');
@@ -877,13 +1367,13 @@ export default function App() {
       <Hero />
       <About />
       <Themes />
-      <Partners />
       <Innovation />
+      <Partners />
       <Agenda /> 
       <Speakers />
-      {/*<Sponsors />*/}
+      {/*<Sponsors />
       <Countdown />
-      <MapSection />
+      <MapSection />*/}
       <PracticalInfo />
       <RegistrationForm />
       <Footer />

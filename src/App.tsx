@@ -916,12 +916,22 @@ const RegistrationForm = () => {
   };
 
   const validate = () => {
+    const blockedDomains = ["gmail.com", "hotmail.com", "outlook.com", "yahoo.com"];
+
     if (!formData.nombre || !formData.apellidos) return false;
     if (!formData.cargo) return false;
     if (!formData.email.includes("@")) return false;
+
+    const domain = formData.email.split("@")[1]?.toLowerCase();
+    if (!domain || blockedDomains.includes(domain)) {
+      alert("Introduce un email corporativo (no Gmail, Hotmail, etc.)");
+      return false;
+    }
+
     if (!formData.telefono) return false;
     if (!formData.legal) return false;
     if (formData.honeypot !== "") return false;
+
     return true;
   };
 
@@ -929,7 +939,7 @@ const RegistrationForm = () => {
     e.preventDefault();
 
     if (!validate()) {
-      alert("Completa todos los campos obligatorios");
+      alert("Completa correctamente todos los campos obligatorios");
       return;
     }
 
@@ -938,7 +948,9 @@ const RegistrationForm = () => {
     try {
       const res = await fetch("/contact.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(formData)
       });
 
@@ -956,7 +968,11 @@ const RegistrationForm = () => {
 
   if (submitted) {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-32 px-6 md:px-12 xl:px-32 text-center max-w-2xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="py-32 px-6 md:px-12 xl:px-32 text-center max-w-2xl mx-auto"
+      >
         <div className="w-20 h-20 border border-heading flex items-center justify-center mx-auto mb-8">
           <CheckCircle2 className="text-heading w-10 h-10" />
         </div>
@@ -985,21 +1001,26 @@ const RegistrationForm = () => {
         <form onSubmit={handleSubmit} className="space-y-10">
 
           {/* honeypot */}
-          <input type="text" name="honeypot" onChange={handleChange} style={{ display: "none" }} />
+          <input
+            type="text"
+            name="honeypot"
+            onChange={handleChange}
+            style={{ display: "none" }}
+          />
 
           <div className="grid sm:grid-cols-2 gap-10">
             <div className="space-y-4">
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Nombre *
               </label>
-              <input name="nombre" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+              <input name="nombre" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
 
             <div className="space-y-4">
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Apellidos *
               </label>
-              <input name="apellidos" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+              <input name="apellidos" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
           </div>
 
@@ -1008,14 +1029,14 @@ const RegistrationForm = () => {
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Empresa
               </label>
-              <input name="empresa" onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+              <input name="empresa" onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
 
             <div className="space-y-4">
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Cargo *
               </label>
-              <input name="cargo" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+              <input name="cargo" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
           </div>
 
@@ -1024,14 +1045,14 @@ const RegistrationForm = () => {
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Email Profesional *
               </label>
-              <input type="email" name="email" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+              <input type="email" name="email" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
 
             <div className="space-y-4">
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Teléfono *
               </label>
-              <input type="tel" name="telefono" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-colors" />
+              <input type="tel" name="telefono" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
           </div>
 
@@ -1040,17 +1061,17 @@ const RegistrationForm = () => {
             <div className="flex items-start gap-4">
               <input type="checkbox" name="legal" required onChange={handleChange} className="mt-1.5 accent-primary" />
               <span className="text-xs text-primary/60 font-light leading-relaxed">
-                Acepto el tratamiento de datos y las{" "}
+                Acepto las{" "}
                 <a href="/aviso-legal.html" className="underline">condiciones legales</a>,{" "}
                 <a href="/politica-privacidad.html" className="underline">política de privacidad</a> y{" "}
-                <a href="/cookies.html" className="underline">cookies</a>.
+                <a href="/cookies.html" className="underline">cookies</a>. *
               </span>
             </div>
 
             <div className="flex items-start gap-4">
               <input type="checkbox" name="newsletter" onChange={handleChange} className="mt-1.5 accent-primary" />
               <span className="text-xs text-primary/60 font-light leading-relaxed">
-                Deseo recibir comunicaciones informativas sobre eventos y novedades.
+                Deseo recibir comunicaciones informativas.
               </span>
             </div>
           </div>
@@ -1059,7 +1080,7 @@ const RegistrationForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-6 bg-primary text-secondary border border-primary font-condensed font-bold uppercase tracking-[0.4em] text-xl hover:opacity-90 transition-all flex items-center justify-center gap-4 group"
+            className="w-full py-6 bg-primary text-secondary border border-primary font-condensed font-bold uppercase tracking-[0.4em] text-xl hover:opacity-90 flex items-center justify-center gap-4 group"
           >
             {loading ? "Enviando..." : "Reservar Plaza"}
             <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
@@ -1074,26 +1095,30 @@ const RegistrationForm = () => {
 
 
 const Footer = () => (
-  <footer className="py-20 px-4 sm:px-6 bg-primary border-t border-primary transition-colors duration-300">
-    <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
-      <div className="space-y-8">
-        <div className="flex items-center gap-2">
-          {/* Logo Tempel */}
-          <img 
-            src={logoTempel} 
-            alt="Tempel Group" 
-            className="h-8 w-auto object-contain"
-          />
-        </div>
-        <p className="text-sm text-primary font-light leading-relaxed">
-          Expertos en soluciones tecnológicas industriales y ciberseguridad avanzada para la industria del futuro.
+  <footer className="py-12 md:py-20 pb-16 md:pb-24 px-6 md:px-12 xl:px-32 bg-primary border-t border-primary">
+    
+    <div className="max-w-5xl xl:max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
+      
+      {/* BRAND */}
+      <div className="space-y-6">
+        <img 
+          src={logoTempel} 
+          alt="Tempel Group" 
+          className="h-8 md:h-10 w-auto object-contain"
+        />
+        <p className="text-sm text-primary/60 font-light leading-relaxed">
+          Expertos en <strong className="text-heading">ciberseguridad industrial</strong> y 
+          <strong className="text-heading"> soluciones tecnológicas</strong> para la industria del futuro.
         </p>
       </div>
       
+      {/* CONTACTO */}
       <div className="space-y-6">
-        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Contacto</h4>
+        <h4 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-heading">
+          Contacto
+        </h4>
         <div className="space-y-4 text-sm font-light">
-          <a href="mailto:info@tempelgroup.com" className="flex items-center gap-3 hover:text-heading transition-colors">
+          <a href="mailto:leads@tempelgroup.com" className="flex items-center gap-3 hover:text-heading transition-colors">
             <Globe className="w-4 h-4" />
             leads@tempelgroup.com
           </a>
@@ -1104,30 +1129,40 @@ const Footer = () => (
         </div>
       </div>
 
+      {/* SOCIAL */}
       <div className="space-y-6">
-        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Social</h4>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-heading transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-heading transition-colors">Twitter</a>
-          <a href="#" className="hover:text-heading transition-colors">YouTube</a>
+        <h4 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-heading">
+          Social
+        </h4>
+        <div className="space-y-3 text-sm font-light">
+          <a href="https://www.linkedin.com/company/tempelgroup/" target="_blank" className="block hover:text-heading transition-colors">LinkedIn</a>
+          <a href="https://www.youtube.com/@TempelGroupWorld" target="_blank" className="block hover:text-heading transition-colors">YouTube</a>
+          <a href="https://www.facebook.com/TempelGroupWorld/" target="_blank" className="block hover:text-heading transition-colors">Facebook</a>
+          <a href="https://www.instagram.com/tempelgroup/" target="_blank" className="block hover:text-heading transition-colors">Instagram</a>
+          <a href="https://share.google/U3uQePfl8ee4RSfrM" target="_blank" className="block hover:text-heading transition-colors">Google Business</a>
         </div>
       </div>
 
+      {/* LEGAL */}
       <div className="space-y-6">
-        <h4 className="text-xs font-condensed font-bold uppercase tracking-widest text-heading">Legal</h4>
-        <div className="space-y-4 text-sm font-light">
-          <a href="#" className="block hover:text-heading transition-colors">Privacidad</a>
-          <a href="#" className="block hover:text-heading transition-colors">Cookies</a>
-          <a href="#" className="block hover:text-heading transition-colors">Aviso Legal</a>
+        <h4 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-heading">
+          Legal
+        </h4>
+        <div className="space-y-3 text-sm font-light">
+          <a href="/aviso-legal.html" className="block hover:text-heading transition-colors">Aviso Legal</a>
+          <a href="/politica-privacidad.html" className="block hover:text-heading transition-colors">Política de Privacidad</a>
+          <a href="/cookies.html" className="block hover:text-heading transition-colors">Cookies</a>
         </div>
       </div>
+
     </div>
-    <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-primary/30 text-[10px] uppercase tracking-[0.4em] text-primary opacity-40">
+
+    <div className="max-w-5xl xl:max-w-6xl mx-auto mt-16 pt-6 border-t border-primary/30 text-[10px] uppercase tracking-[0.4em] text-primary/40 text-center">
       © {new Date().getFullYear()} Tempel Group. Todos los derechos reservados.
     </div>
+
   </footer>
 );
-
 
 
 

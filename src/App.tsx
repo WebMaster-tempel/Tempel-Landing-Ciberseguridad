@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "motion/react";
+import { createPortal } from "react-dom";
 import { 
   Shield, 
   Users, 
@@ -23,6 +24,7 @@ import {
   Activity,
   Globe
 } from "lucide-react";
+import Swal from "sweetalert2";
 import React, { useState, useEffect } from "react";
 
 import logoTempel from "./assets/images/brand/logo/logotipo_tempelgroup.png";
@@ -31,8 +33,13 @@ import logoCCI from "./assets/images/brand/logo/logo-cci-pos-es.png";
 import logoMoxa from "./assets/images/brand/logo/Moxa_Logo_CMYK.png";
 
 
+import HeroIMG from "./assets/images/brand/uploads/Tempel-Group_Evento_Ciberseguridad_Industrial.png";
+
+
+
 import AlvaroBorges from "./assets/images/ponentes/alvaro_borges.png";
 import JoseValiente from "./assets/images/ponentes/jose_valiente.png";
+import GemmaGarces from "./assets/images/ponentes/gemma_garces.jpeg";
 
 
 
@@ -43,74 +50,124 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
 
   const navLinks = [
     { name: "Inicio", href: "#hero" },
-    { name: "Sobre el evento", href: "#about" },
+    { name: "Evento", href: "#about" },
     { name: "Temáticas", href: "#themes" },
     { name: "Agenda", href: "#agenda" },
     { name: "Ponentes", href: "#speakers" },
   ];
 
+  // 🔒 Bloquear scroll + ESC
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+
+    if (isOpen) window.addEventListener("keydown", handleEsc);
+
+    return () => {
+      document.body.style.overflow = "auto";
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isOpen]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-primary transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img
-              src={logoTempel}
-              alt="Tempel Group"
-              className="h-8 sm:h-10 w-auto object-contain transition-all duration-300"
-            />
-          </div>
+    <>
+      {/* NAVBAR */}
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-white border-b border-black/10">
         
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-6 text-[10px] font-condensed font-bold uppercase tracking-[0.2em] text-primary transition-colors duration-300">
-          {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="hover:text-heading transition-colors">{link.name}</a>
-          ))}
-          <a href="#register" className="border border-heading px-4 py-2 hover:bg-secondary hover:text-primary transition-all">
-            Registro
-          </a>
-        </div>
+        <div className="max-w-5xl xl:max-w-6xl mx-auto px-6 md:px-12 xl:px-32 h-20 flex items-center justify-between">
 
-        {/* Mobile Menu Toggle */}
-        <div className="flex items-center gap-4 lg:hidden">
-          <button 
-            onClick={toggleTheme}
-            className="p-2 text-heading"
-            aria-label="Toggle Theme"
-          >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          <button 
-            className="text-heading p-2"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-      </div>
+          {/* LOGO */}
+          <img
+            src={logoTempel}
+            alt="Tempel Group"
+            className="h-8 sm:h-10 w-auto object-contain"
+          />
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden absolute top-20 left-0 right-0 bg-primary border-b border-primary overflow-hidden transition-colors duration-300"
-          >
-            <div className="p-6 flex flex-col gap-4 text-sm font-condensed font-bold uppercase tracking-widest text-primary">
-              {navLinks.map((link) => (
-                <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="hover:text-heading py-2 border-b border-primary/20">{link.name}</a>
-              ))}
-              <a href="#register" onClick={() => setIsOpen(false)} className="border border-heading px-4 py-3 text-center hover:bg-secondary hover:text-primary transition-all mt-2">
-                Registro
+          {/* DESKTOP */}
+          <div className="hidden lg:flex items-center gap-6 text-[11px] font-condensed font-bold uppercase tracking-[0.2em] text-black">
+            {navLinks.map((link) => (
+              <a key={link.name} href={link.href} className="hover:text-gray-600 transition-colors">
+                {link.name}
               </a>
-            </div>
-          </motion.div>
+            ))}
+
+            <a
+              href="#register"
+              className="border border-black px-4 py-2 hover:bg-black hover:text-white transition-all"
+            >
+              Registro
+            </a>
+          </div>
+
+          {/* MOBILE BUTTON */}
+          <button
+            className="lg:hidden text-black p-2 z-50"
+            onClick={() => setIsOpen(true)}
+          >
+            <Menu />
+          </button>
+        </div>
+      </nav>
+
+      {/* MOBILE MENU */}
+      {typeof document !== "undefined" &&
+        isOpen &&
+        createPortal(
+          <AnimatePresence>
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-[99999] flex flex-col"
+              style={{ backgroundColor: "#ffffff" }} // fondo blanco sólido
+            >
+              {/* HEADER */}
+              <div className="h-20 flex items-center justify-between px-6 md:px-12 xl:px-32 border-b border-black/10 shrink-0">
+                <img src={logoTempel} className="h-8 w-auto object-contain" />
+
+                <button onClick={() => setIsOpen(false)}>
+                  <X className="w-6 h-6 text-black" />
+                </button>
+              </div>
+
+              {/* CONTENT */}
+              <div className="flex flex-col justify-center items-center flex-1 gap-10 text-center px-6">
+
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-xl font-condensed font-bold uppercase tracking-widest text-black hover:text-gray-500 transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+
+                <a
+                  href="#register"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-6 border border-black px-8 py-4 text-lg font-condensed font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all"
+                >
+                  Registro
+                </a>
+
+              </div>
+            </motion.div>
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
-    </nav>
+    </>
   );
 };
+
+
+
 
 const Hero = () => (
   <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-20 px-6 md:px-12 xl:px-32 overflow-hidden cyber-grid">
@@ -180,17 +237,17 @@ const Hero = () => (
           transition={{ duration: 1 }}
           className="relative"
         >
-          <div className="relative z-10 border border-primary p-2">
+          <div className="max-w-md md:max-w-lg xl:max-w-xl mx-auto lg:ml-auto">
             <img 
-              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1200" 
+              src={HeroIMG}
               alt="Ciberseguridad industrial OT IT"
-              className="w-full h-[400px] md:h-[600px] object-cover opacity-80"
+              className="w-full h-auto object-contain bg-black"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 to-transparent pointer-events-none" />
+             {/* <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 to-transparent pointer-events-none" />*/}
           </div>
 
-          <div className="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-primary" />
-          <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-primary" />
+          <div className="hidden md:block absolute -top-4 -left-4 xl:-left-6 w-24 h-24 border-t-2 border-l-2 border-primary" />
+          <div className="hidden md:block absolute -bottom-4 -right-4 xl:-right-6 w-24 h-24 border-b-2 border-r-2 border-primary" />
         </motion.div>
 
       </div>
@@ -450,6 +507,18 @@ const Innovation = () => (
         </div>
 
       </div>
+
+      {/* CTA */}
+      <div className="mt-20 flex justify-center">
+        <a
+          href="#register"
+          className="group border border-primary px-10 py-5 text-sm md:text-base font-condensed font-bold uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-secondary transition-all flex items-center gap-4"
+        >
+          Reservar Plaza
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </a>
+      </div>
+
     </div>
   </section>
 );
@@ -479,7 +548,7 @@ const Agenda = () => {
     {
       time: "10:05 - 10:20",
       title: "Evolución, experiencia y compromiso con el futuro del entorno industrial",
-      desc: "Gemma Garcés (Sales Manager, Tempel Group)."
+      desc: "Gemma Garcés (Engineering Sales Manager, Tempel Group)."
     },
     {
       time: "10:20 - 10:50",
@@ -514,8 +583,7 @@ const Agenda = () => {
   ];
 
   return (
-    <section id="agenda" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
-      
+    <section id="agenda" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">  
       <div className="max-w-5xl xl:max-w-6xl mx-auto text-center">
         
         <div className="mb-16">
@@ -551,6 +619,17 @@ const Agenda = () => {
           ))}
         </div>
 
+        {/* CTA */}
+        <div className="mt-16 flex justify-center">
+          <a
+            href="#register"
+            className="group border border-primary px-10 py-5 text-sm md:text-base font-condensed font-bold uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-secondary transition-all flex items-center gap-4"
+          >
+            Reservar Plaza
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+
       </div>
     </section>
   );
@@ -567,10 +646,10 @@ const Speakers = () => {
   const speakers = [
     { 
       name: "Gemma Garcés", 
-      role: "Por definir", 
+      role: "Engineering Sales Manager", 
       company: "Tempel Group", 
-      desc: "Pendiente de información.", 
-      img: "https://picsum.photos/seed/gemma/400/400" 
+      desc: "Experta en desarrollo de negocio de soluciones tecnológicas para entornos industriales, integrando conectividad OT y aplicando criterios de ciberseguridad desde el diseño.", 
+      img: GemmaGarces
     },
     { 
       name: "José Valiente", 
@@ -793,66 +872,75 @@ const PracticalInfo = () => {
               transition={{ delay: i * 0.1 }}
               className="border border-primary/20 overflow-hidden"
             >
-              {/* MAP */}
-              <div className="h-[280px] md:h-[350px] relative">
-                <iframe
-                  src={event.iframe}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  title={event.city}
-                  className="opacity-80"
-                />
-                <div className="absolute inset-0 pointer-events-none border-[10px] border-primary/10" />
-              </div>
+              
+              {/* GRID PRINCIPAL */}
+              <div className="grid md:grid-cols-2">
+                                {/* INFO */}
+                <div className="p-6 md:p-10 flex flex-col justify-center">
 
-              {/* INFO */}
-              <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8 text-left">
-                
-                {/* LEFT */}
-                <div className="space-y-4">
-                  <h3 className="text-xl md:text-2xl font-bold">
-                    {event.city}
-                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-8">
 
-                  <div className="flex items-center gap-3 text-sm">
-                    <Calendar className="w-4 h-4" />
-                    <span>{event.date}</span>
+                    {/* LEFT */}
+                    <div className="space-y-4">
+                      <h3 className="text-xl md:text-2xl font-bold">
+                        {event.city}
+                      </h3>
+
+                      <div className="flex items-center gap-3 text-sm">
+                        <Calendar className="w-4 h-4" />
+                        <span>{event.date}</span>
+                      </div>
+
+                      <div className="flex items-center gap-3 text-sm">
+                        <Clock className="w-4 h-4" />
+                        <span>{event.time}</span>
+                      </div>
+
+                      <div className="flex items-start gap-3 text-sm">
+                        <MapPin className="w-4 h-4 mt-1" />
+                        <span>{event.location}</span>
+                      </div>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <Building2 className="w-5 h-5 mt-1" />
+                        <div>
+                          <p className="font-semibold">{event.venue}</p>
+                          <p className="text-primary/60 text-sm">
+                            {event.location}
+                          </p>
+                        </div>
+                      </div>
+
+                      <a
+                        href={event.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                      >
+                        Cómo llegar
+                        <ChevronRight className="w-4 h-4" />
+                      </a>
+                    </div>
+
                   </div>
 
-                  <div className="flex items-center gap-3 text-sm">
-                    <Clock className="w-4 h-4" />
-                    <span>{event.time}</span>
-                  </div>
-
-                  <div className="flex items-start gap-3 text-sm">
-                    <MapPin className="w-4 h-4 mt-1" />
-                    <span>{event.location}</span>
-                  </div>
                 </div>
 
-                {/* RIGHT */}
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Building2 className="w-5 h-5 mt-1" />
-                    <div>
-                      <p className="font-semibold">{event.venue}</p>
-                      <p className="text-primary/60 text-sm">
-                        {event.location}
-                      </p>
-                    </div>
-                  </div>
-
-                  <a
-                    href={event.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
-                  >
-                    Cómo llegar
-                    <ChevronRight className="w-4 h-4" />
-                  </a>
+                {/* MAPA */}
+                <div className="h-[280px] md:h-full relative">
+                  <iframe
+                    src={event.iframe}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    title={event.city}
+                    className="opacity-80"
+                  />
+                  <div className="absolute inset-0 pointer-events-none border-[10px] border-primary/10" />
                 </div>
 
               </div>
@@ -909,27 +997,67 @@ const RegistrationForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
+    let newValue = value;
+
+    if (name === "telefono") {
+      newValue = value.replace(/\D/g, ""); // solo números
+    } else {
+      newValue = sanitize(value);
+    }
+
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : sanitize(value)
+      [name]: type === "checkbox" ? checked : newValue
     });
   };
 
   const validate = () => {
     const blockedDomains = ["gmail.com", "hotmail.com", "outlook.com", "yahoo.com"];
 
-    if (!formData.nombre || !formData.apellidos) return false;
-    if (!formData.cargo) return false;
-    if (!formData.email.includes("@")) return false;
-
-    const domain = formData.email.split("@")[1]?.toLowerCase();
-    if (!domain || blockedDomains.includes(domain)) {
-      alert("Introduce un email corporativo (no Gmail, Hotmail, etc.)");
+    if (!formData.nombre || !formData.apellidos) {
+      Swal.fire({ icon: "warning", title: "Faltan datos", text: "Nombre y apellidos son obligatorios" });
       return false;
     }
 
-    if (!formData.telefono) return false;
-    if (!formData.legal) return false;
+    if (formData.telefono.length < 7 || formData.telefono.length > 15) {
+      Swal.fire({
+        icon: "warning",
+        title: "Teléfono inválido",
+        text: "Debe contener entre 7 y 15 números"
+      });
+      return false;
+    }
+
+    if (!formData.cargo) {
+      Swal.fire({ icon: "warning", title: "Falta información", text: "El cargo es obligatorio" });
+      return false;
+    }
+
+    if (!formData.email.includes("@")) {
+      Swal.fire({ icon: "warning", title: "Email inválido", text: "Introduce un email válido" });
+      return false;
+    }
+
+    const domain = formData.email.split("@")[1]?.toLowerCase();
+    if (!domain || blockedDomains.includes(domain)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Email no permitido",
+        text: "Introduce un email corporativo (no Gmail, Hotmail, etc.)"
+      });
+      return false;
+    }
+
+    if (!formData.telefono) {
+      Swal.fire({ icon: "warning", title: "Falta teléfono", text: "El teléfono es obligatorio" });
+      return false;
+    }
+
+    if (!formData.legal) {
+      Swal.fire({ icon: "warning", title: "Consentimiento requerido", text: "Debes aceptar las condiciones legales" });
+      return false;
+    }
+
     if (formData.honeypot !== "") return false;
 
     return true;
@@ -938,10 +1066,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validate()) {
-      alert("Completa correctamente todos los campos obligatorios");
-      return;
-    }
+    if (!validate()) return;
 
     setLoading(true);
 
@@ -954,13 +1079,47 @@ const RegistrationForm = () => {
         body: JSON.stringify(formData)
       });
 
-      const data = await res.json();
+      // 🔥 Protección contra HTML inesperado
+      const text = await res.text();
 
-      if (data.ok) setSubmitted(true);
-      else alert("Error enviando formulario");
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("Respuesta inválida del servidor");
+      }
+
+      if (data.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Registro completado",
+          text: "Recibirás un email con los detalles",
+          background: "#0f0f0f",
+          color: "#fff",
+          confirmButtonColor: "#fff",
+          customClass: {
+            confirmButton: "swal-btn-dark"
+          }
+        });
+
+        setSubmitted(true);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo enviar el formulario"
+        });
+      }
+
     } catch (err) {
       console.error(err);
-      alert("Error de conexión");
+
+      Swal.fire({
+        icon: "error",
+        title: "Error de conexión",
+        text: "Inténtalo más tarde"
+      });
+
     } finally {
       setLoading(false);
     }
@@ -1052,7 +1211,7 @@ const RegistrationForm = () => {
               <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 Teléfono *
               </label>
-              <input type="tel" name="telefono" required onChange={handleChange} className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
+              <input type="tel" name="telefono" required onChange={handleChange} pattern="[0-9]{7,15}" inputMode="numeric" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
           </div>
 

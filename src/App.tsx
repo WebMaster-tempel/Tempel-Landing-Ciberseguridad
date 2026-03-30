@@ -405,7 +405,7 @@ const Themes = () => {
             Áreas clave en <strong className="text-primary">ciberseguridad industrial</strong>, 
             <strong className="text-primary"> cumplimiento NIS2</strong> y 
             <strong className="text-primary"> protección de infraestructuras críticas</strong>, 
-            junto con las <strong className="text-primary">tecnologías que están transformando el sector</strong> 
+            junto con las <strong className="text-primary">tecnologías que están transformando el sector </strong> 
             en entornos productivos.
           </p>
         </div>
@@ -1028,7 +1028,9 @@ const RegistrationForm = () => {
       const text = await res.text();
 
       let data;
+      console.log("gfeirgoergnritgh", data);
       try {
+        console.log("texty", text);
         data = JSON.parse(text);
       } catch {
         throw new Error("Respuesta inválida del servidor");

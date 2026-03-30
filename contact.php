@@ -122,6 +122,58 @@ $headers .= "Content-type:text/html;charset=UTF-8\r\n";
 $headers .= "From: no-reply@tempelgroup.com\r\n";
 $headers .= "Reply-To: $email\r\n";
 
+
+// 📁 RUTA SEGURA
+$dir = __DIR__ . "/data";
+$file = $dir . "/registros.csv";
+
+// Crear carpeta si no existe
+if (!is_dir($dir)) {
+    if (!mkdir($dir, 0777, true)) {
+        echo json_encode(["ok" => false, "error" => "No se pudo crear carpeta"]);
+        exit;
+    }
+}
+
+// Verificar permisos
+if (!is_writable($dir)) {
+    echo json_encode(["ok" => false, "error" => "Carpeta no escribible"]);
+    exit;
+}
+
+// Crear cabecera si no existe
+if (!file_exists($file)) {
+    file_put_contents($file, "Nombre,Apellidos,Empresa,Cargo,Email,Telefono,Comida,Alergias,Newsletter,Fecha\n");
+}
+
+// Crear fila
+$row = [
+    $nombre,
+    $apellidos,
+    $empresa,
+    $cargo,
+    $email,
+    $telefono,
+    $comida ? "Sí" : "No",
+    $alergias,
+    $newsletter ? "Sí" : "No",
+    date("Y-m-d H:i:s")
+];
+
+// Convertir a CSV seguro
+$line = implode(",", array_map(function($v) {
+    return '"' . str_replace('"', '""', $v) . '"';
+}, $row)) . "\n";
+
+// Guardar con bloqueo
+$result = file_put_contents($file, $line, FILE_APPEND | LOCK_EX);
+
+if ($result === false) {
+    echo json_encode(["ok" => false, "error" => "Error escribiendo archivo"]);
+    exit;
+}
+
+
 // 🚀 ENVÍO
 $success = mail($to, $subject, $body, $headers);
 

@@ -21,6 +21,8 @@ $apellidos = clean($data["apellidos"]);
 $empresa = clean($data["empresa"]);
 $cargo = clean($data["cargo"]);
 $email = clean($data["email"]);
+$comida = $data["comida"] ?? false;
+$alergias = clean($data["alergias"] ?? "");
 
 // 🔒 Teléfono (sin clean)
 $telefono = $data["telefono"] ?? "";
@@ -54,6 +56,11 @@ if (!empty($honeypot)) {
 // 🔒 Email válido
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode(["ok" => false, "error" => "Email inválido"]);
+    exit;
+}
+
+if ($comida && empty($alergias)) {
+    echo json_encode(["ok" => false, "error" => "Indica alergias o escribe 'Ninguna'"]);
     exit;
 }
 
@@ -94,6 +101,10 @@ $body = "
     <div class='row'><span class='label'>Cargo:</span> $cargo</div>
     <div class='row'><span class='label'>Email:</span> $email</div>
     <div class='row'><span class='label'>Teléfono:</span> $telefono</div>
+
+    <div class='row'><span class='label'>Se queda a comer:</span> " . ($comida ? "Sí" : "No") . "</div>
+
+    " . ($comida ? "<div class='row'><span class='label'>Alergias / Intolerancias:</span> $alergias</div>" : "") . "
 
     <div class='divider'></div>
 

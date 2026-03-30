@@ -22,7 +22,8 @@ import {
   Lock,
   Zap,
   Activity,
-  Globe
+  Globe,
+   Linkedin, Youtube, Facebook, Instagram
 } from "lucide-react";
 import Swal from "sweetalert2";
 import React, { useState, useEffect } from "react";
@@ -89,15 +90,12 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
           {/* DESKTOP */}
           <div className="hidden lg:flex items-center gap-6 text-[11px] font-condensed font-bold uppercase tracking-[0.2em] text-black">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="hover:text-gray-600 transition-colors">
+              <a key={link.name} href={link.href} className="hover:text-gray-600 transition-colors navbar-link">
                 {link.name}
               </a>
             ))}
 
-            <a
-              href="#register"
-              className="border border-black px-4 py-2 hover:bg-black hover:text-white transition-all"
-            >
+            <a href="#register" className="border border-black px-4 py-2 hover:bg-black hover:text-white transition-all navbar-link" >
               Registro
             </a>
           </div>
@@ -184,10 +182,10 @@ const Hero = () => (
         >
           <div className="inline-flex items-center gap-3 border border-primary px-6 py-2 text-xs md:text-sm font-condensed font-bold tracking-[0.35em] text-primary mb-8 uppercase">
             <Calendar className="w-4 h-4 md:w-5 md:h-5" />
-            <span>Próxima Edición 2026</span>
+            <span>Edición 2026</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-6xl xl:text-6xl font-bold leading-[1] mb-8">
+          <h1 className="text-5xl sm:text-5xl md:text-5xl xl:text-5xl font-bold leading-[1] mb-8">
             <strong>Ciberseguridad Industrial</strong> <br />
             <span className="text-primary">& NIS2</span>
           </h1>
@@ -203,7 +201,7 @@ const Hero = () => (
 
             <div className="flex items-center gap-3 font-condensed font-bold uppercase tracking-widest text-sm">
               <Calendar className="w-5 h-5 text-primary" />
-              <span><strong>30 Abril</strong> · Madrid</span>
+              <span><strong>28 Abril</strong> · Madrid</span>
             </div>
 
             {/* 
@@ -375,38 +373,45 @@ const Themes = () => {
     { 
       title: "Ciberseguridad & NIS2", 
       icon: Lock, 
-      desc: "Estrategias de <strong>ciberseguridad empresarial</strong> alineadas con la <strong>regulación NIS2</strong>, garantizando la protección de activos digitales y el cumplimiento normativo." 
+      desc: "Estrategias de ciberseguridad empresarial alineadas con la regulación NIS2, garantizando la protección de activos digitales y el cumplimiento normativo.",
+      extra: "Hardware y software de última generación para entornos OT."
     },
     { 
       title: "Infraestructuras Críticas & Tecnología", 
       icon: Shield, 
-      desc: "Protección de <strong>infraestructuras críticas</strong> mediante <strong>soluciones tecnológicas avanzadas</strong> en detección, respuesta y prevención de amenazas." 
+      desc: "Protección de infraestructuras críticas mediante soluciones tecnológicas avanzadas en detección, respuesta y prevención de amenazas.",
+      extra: "Sistemas de protección específicos para redes industriales."
     },
     { 
       title: "Gestión del Riesgo Digital", 
       icon: Activity, 
-      desc: "Metodologías para <strong>identificar, evaluar y mitigar riesgos</strong> en entornos industriales y redes corporativas." 
+      desc: "Metodologías para identificar, evaluar y mitigar riesgos en entornos industriales y redes corporativas.",
+      extra: "Evolución de la ciberseguridad industrial global."
     },
   ];
 
   return (
     <section id="themes" className="py-12 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
       
-      {/* 🔥 Contenedor alineado con Hero/About */}
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
         
-        <div className="text-center mb-20">
+        {/* HEADER */}
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl xl:text-6xl font-bold mb-6">
             Temáticas del Evento
           </h2>
-          <p className="text-primary/60 max-w-2xl mx-auto font-light">
+
+          <p className="text-primary/60 max-w-3xl mx-auto font-light leading-relaxed">
             Áreas clave en <strong className="text-primary">ciberseguridad industrial</strong>, 
             <strong className="text-primary"> cumplimiento NIS2</strong> y 
-            <strong className="text-primary"> protección de infraestructuras críticas</strong>.
+            <strong className="text-primary"> protección de infraestructuras críticas</strong>, 
+            junto con las <strong className="text-primary">tecnologías que están transformando el sector</strong> 
+            en entornos productivos.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* GRID */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {themes.map((theme, i) => (
             <motion.div 
               key={i}
@@ -414,18 +419,24 @@ const Themes = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-10 border border-primary/20 hover:border-primary transition-all group"
+              className="p-6 border border-primary/20 hover:border-primary transition-all group flex flex-col"
             >
-              <theme.icon className="w-10 h-10 mb-8 opacity-40 group-hover:opacity-100 transition-opacity" />
+              <theme.icon className="w-8 h-8 mb-6 opacity-50 group-hover:opacity-100 transition-opacity" />
 
-              <h3 className="text-2xl font-bold mb-4 text-primary">
+              <h3 className="text-xl font-bold mb-3 text-primary">
                 {theme.title}
               </h3>
 
-              <p 
-                className="text-primary/60 font-light leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: theme.desc }}
-              />
+              {/* Descripción */}
+              <p className="text-primary/60 text-sm leading-relaxed mb-4">
+                {theme.desc}
+              </p>
+
+              {/* Extra alineado */}
+              <ul className="text-sm text-primary/60 list-disc pl-4 space-y-1">
+                <li>{theme.extra}</li>
+              </ul>
+
             </motion.div>
           ))}
         </div>
@@ -434,100 +445,6 @@ const Themes = () => {
     </section>
   );
 };
-
-
-
-
-
-
-
-const Innovation = () => (
-  <section className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-primary transition-colors duration-300">
-    
-    <div className="max-w-5xl xl:max-w-6xl mx-auto">
-      
-      <div className="flex flex-col lg:flex-row gap-16 items-center">
-        
-        <div className="lg:w-1/2">
-          <h2 className="text-4xl md:text-6xl font-bold mb-8">¿Por qué asistir?</h2>
-
-          <p className="text-lg text-primary font-light leading-relaxed mb-10">
-            Descubre las <strong className="text-heading font-semibold">tecnologías que están transformando la ciberseguridad industrial</strong> en entornos productivos. 
-            Un espacio dedicado a la <strong className="text-heading font-semibold">vanguardia tecnológica en IT/OT</strong>.
-          </p>
-
-          <div className="space-y-8">
-            {[
-              { 
-                title: "Tecnologías Presentadas", 
-                icon: Lightbulb, 
-                desc: "Hardware y software de última generación para <strong>entornos OT</strong>." 
-              },
-              { 
-                title: "Soluciones de Ciberseguridad", 
-                icon: Shield, 
-                desc: "Sistemas de protección específicos para <strong>redes industriales</strong>." 
-              },
-              { 
-                title: "Tendencias del Sector", 
-                icon: Globe, 
-                desc: "Evolución de la <strong>ciberseguridad industrial global</strong>." 
-              }
-            ].map((item, i) => (
-              <div key={i} className="flex gap-6">
-                
-                <div className="w-12 h-12 border border-primary flex items-center justify-center shrink-0">
-                  <item.icon className="w-6 h-6 text-primary" />
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                  <p 
-                    className="text-primary font-light text-sm leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: item.desc }}
-                  />
-                </div>
-
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="lg:w-1/2 grid grid-cols-2 gap-4">
-          <img 
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" 
-            alt="Tecnología ciberseguridad industrial" 
-            className="w-full h-64 object-cover"
-          />
-          <img 
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" 
-            alt="Redes industriales seguridad OT" 
-            className="w-full h-64 object-cover mt-8"
-          />
-        </div>
-
-      </div>
-
-      {/* CTA */}
-      <div className="mt-20 flex justify-center">
-        <a
-          href="#register"
-          className="group border border-primary px-10 py-5 text-sm md:text-base font-condensed font-bold uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-secondary transition-all flex items-center gap-4"
-        >
-          Reservar Plaza
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </a>
-      </div>
-
-    </div>
-  </section>
-);
-
-
-
-
-
-
 
 
 
@@ -583,35 +500,39 @@ const Agenda = () => {
   ];
 
   return (
-    <section id="agenda" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">  
-      <div className="max-w-5xl xl:max-w-6xl mx-auto text-center">
-        
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-6xl xl:text-6xl font-bold mb-6">
+    <section id="agenda" className="py-16 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+      <div className="max-w-5xl mx-auto">
+
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
             Agenda del Evento
           </h2>
-          <div className="w-16 h-px bg-primary mx-auto opacity-40" />
+          <div className="w-12 h-px bg-primary mx-auto opacity-40" />
         </div>
-        
-        <div className="space-y-4">
+
+          {/* Lista compacta */}
+          <div className="divide-y divide-primary/10 w-full md:w-3/4 mx-auto text-center">
           {sessions.map((session, i) => (
-            <motion.div 
+            <motion.div
               key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="group flex flex-col md:flex-row border border-primary/20 hover:border-primary transition-all"
+              transition={{ delay: i * 0.03 }}
+              className="py-3 grid grid-cols-1 md:grid-cols-[140px_1fr] gap-3 items-start"
             >
-              <div className="md:w-1/4 p-6 bg-primary/5 border-b md:border-b-0 md:border-r border-primary/20 font-condensed font-bold text-base text-primary">
+              {/* Hora */}
+              <div className="text-sm font-bold text-primary/80">
                 {session.time}
               </div>
 
-              <div className="md:w-3/4 p-6 text-left">
-                <h3 className="text-xl font-semibold mb-1 text-primary">
+              {/* Contenido */}
+              <div>
+                <h3 className="text-base md:text-lg font-semibold leading-tight">
                   {session.title}
                 </h3>
-                <p className="text-primary/60 font-light text-sm leading-relaxed">
+                <p className="text-xs md:text-sm text-primary/60 leading-snug">
                   {session.desc}
                 </p>
               </div>
@@ -619,14 +540,13 @@ const Agenda = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 flex justify-center">
+        {/* CTA más compacto */}
+        <div className="mt-10 flex justify-center">
           <a
             href="#register"
-            className="group border border-primary px-10 py-5 text-sm md:text-base font-condensed font-bold uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-secondary transition-all flex items-center gap-4"
+            className="border border-primary px-6 py-3 text-xs md:text-sm font-condensed font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-secondary transition-all"
           >
-            Reservar Plaza
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Reservar Plaza →
           </a>
         </div>
 
@@ -634,7 +554,6 @@ const Agenda = () => {
     </section>
   );
 };
-
 
 
 
@@ -655,7 +574,7 @@ const Speakers = () => {
       name: "José Valiente", 
       role: "Ciberseguridad Industrial", 
       company: "CCI", 
-      desc: "Comunico y comparto experiencias en ciberseguridad industrial para crecer aliados.", 
+      desc: "Director del CCI, experto en ciberseguridad industrial y desarrollo de negocio TI, con enfoque en protección digital, liderazgo estratégico y crecimiento empresarial.", 
       img: JoseValiente
     },
     { 
@@ -666,8 +585,8 @@ const Speakers = () => {
       img: "https://picsum.photos/seed/francisco/400/400" 
     },
     {
-      name: "Álvaro Borges",
-      role: "Senior Lead Field Application Engineer",
+      name: "Arisha Inam",
+      role: "Solutions Engineer | Networking | Cybersecurity | IT/OT",
       company: "MOXA",
       desc: "Especialista en soluciones industriales y conectividad OT, con amplia experiencia en soporte técnico avanzado y despliegue de infraestructuras en entornos industriales.",
       img: AlvaroBorges
@@ -736,17 +655,17 @@ const Speakers = () => {
 const Partners = () => {
   const partners = [
     { name: "CCI", logo: logoCCI, url: "https://www.cci-es.org/" },
-    { name: "MOXA", logo: logoMoxa, url: "https://www.moxa.com/", className: "w-1/2" }
+    { name: "MOXA", logo: logoMoxa, url: "https://www.moxa.com/", className: "w-2/4" }
   ];
 
   return (
-    <section className="py-24 md:py-32 px-6 md:px-12 xl:px-32 bg-primary border-y border-primary">
+    <section className="py-24 md:py-10 px-6 md:px-12 xl:px-32 bg-primary border-y border-primary">
       
       {/* 🔥 Contenedor alineado con todo */}
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
 
         {/* ORGANIZADO POR */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10">
           <h2 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-60 mb-6">
             Evento organizado por
           </h2>
@@ -763,7 +682,7 @@ const Partners = () => {
         </div>
 
         {/* PARTNERS */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-primary opacity-60">
               Partners y Colaboradores
           </h2>
@@ -809,10 +728,10 @@ const PracticalInfo = () => {
   const events = [
     {
       city: "Madrid",
-      date: "15 Oct 2026",
-      time: "09:00 - 15:30",
-      location: "Ubicación pendiente de confirmar",
-      venue: "Centro Tecnológico Madrid",
+      date: "28 Abril 2026",
+      time: "09:00 - 15:00",
+      location: "C/ Serrano Anguita 14. 28004 Madrid",
+      venue: "Espacio DOBBLE",
       mapUrl: "https://maps.google.com/?q=madrid",
       iframe: "https://www.google.com/maps?q=madrid&output=embed",
     },
@@ -839,9 +758,22 @@ const PracticalInfo = () => {
   ];
 
   const faqs = [
-    { q: "¿Es el evento gratuito?", a: "Sí, es un evento exclusivo para profesionales del sector industrial previo registro." },
-    { q: "¿Se entregará certificado?", a: "Sí, recibirás un certificado digital de participación." },
-    { q: "¿Habrá traducción?", a: "Las ponencias internacionales contarán con traducción simultánea." },
+    { 
+      q: "¿Es el evento gratuito?", 
+      a: "Sí, es un evento exclusivo para profesionales del sector industrial previo registro." 
+    },
+    { 
+      q: "¿Se entregará certificado?", 
+      a: "No, puesto que no es un evento dedicado a la formación. El objetivo principal es compartir conocimiento, tendencias y casos prácticos del sector." 
+    },
+    { 
+      q: "¿Habrá traducción?", 
+      a: "No, todas las ponencias se realizarán en español. En caso de intervenciones puntuales en otro idioma, se procurará que sean fácilmente comprensibles para los asistentes." 
+    },
+    { 
+      q: "¿Podré venir acompañado?", 
+      a: "Sí, pero previamente el acompañante deberá registrarse de forma individual para poder gestionar correctamente el aforo y la organización del evento." 
+    },
   ];
 
   return (
@@ -875,70 +807,58 @@ const PracticalInfo = () => {
               
               {/* GRID PRINCIPAL */}
               <div className="grid md:grid-cols-2">
-                                {/* INFO */}
-                <div className="p-6 md:p-10 flex flex-col justify-center">
+              <div className="p-6 md:p-10 flex flex-col justify-center space-y-6">
 
-                  <div className="grid sm:grid-cols-2 gap-8">
+                {/* Ciudad */}
+                <h3 className="text-xl md:text-2xl font-bold">
+                  {event.city}
+                </h3>
 
-                    {/* LEFT */}
-                    <div className="space-y-4">
-                      <h3 className="text-xl md:text-2xl font-bold">
-                        {event.city}
-                      </h3>
-
-                      <div className="flex items-center gap-3 text-sm">
-                        <Calendar className="w-4 h-4" />
-                        <span>{event.date}</span>
-                      </div>
-
-                      <div className="flex items-center gap-3 text-sm">
-                        <Clock className="w-4 h-4" />
-                        <span>{event.time}</span>
-                      </div>
-
-                      <div className="flex items-start gap-3 text-sm">
-                        <MapPin className="w-4 h-4 mt-1" />
-                        <span>{event.location}</span>
-                      </div>
-                    </div>
-
-                    {/* RIGHT */}
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <Building2 className="w-5 h-5 mt-1" />
-                        <div>
-                          <p className="font-semibold">{event.venue}</p>
-                          <p className="text-primary/60 text-sm">
-                            {event.location}
-                          </p>
-                        </div>
-                      </div>
-
-                      <a
-                        href={event.mapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
-                      >
-                        Cómo llegar
-                        <ChevronRight className="w-4 h-4" />
-                      </a>
-                    </div>
-
+                 {/* Venue */}
+                <div className="flex items-start gap-3">
+                  <Building2 className="w-5 h-5 mt-1" />
+                  <div>
+                    <p className="font-semibold">{event.venue}</p>
                   </div>
-
                 </div>
 
-                {/* MAPA */}
+                {/* Fecha */}
+                <div className="flex items-center gap-3 text-sm">
+                  <Calendar className="w-4 h-4" />
+                  <span>{event.date}</span>
+                </div>
+
+                {/* Hora */}
+                <div className="flex items-center gap-3 text-sm">
+                  <Clock className="w-4 h-4" />
+                  <span>{event.time}</span>
+                </div>
+
+                {/* Ubicación */}
+                <div className="flex items-start gap-3 text-sm">
+                  <MapPin className="w-4 h-4 mt-1" />
+                  <span>{event.location}</span>
+                </div>
+
+                {/* CTA */}
+                <a
+                  href={event.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+                >
+                  Cómo llegar
+                  <ChevronRight className="w-4 h-4" />
+                </a>
+
+              </div>
+
+                {/* IMAGEN */}
                 <div className="h-[280px] md:h-full relative">
-                  <iframe
-                    src={event.iframe}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    loading="lazy"
-                    title={event.city}
-                    className="opacity-80"
+                  <img
+                    src="/img/foto-sala-dobble.jpg"
+                    alt="Espacio DOBBLE Madrid"
+                    className="w-full h-full object-cover opacity-90"
                   />
                   <div className="absolute inset-0 pointer-events-none border-[10px] border-primary/10" />
                 </div>
@@ -955,17 +875,39 @@ const PracticalInfo = () => {
           </h2>
 
           <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <div key={i} className="border border-primary/20 p-6">
-                <h4 className="font-bold mb-2 flex items-center gap-2">
-                  <ChevronRight className="w-4 h-4" />
-                  {faq.q}
-                </h4>
-                <p className="text-primary/60 text-sm font-light">
-                  {faq.a}
-                </p>
-              </div>
-            ))}
+            {faqs.map((faq, i) => {
+              const [open, setOpen] = React.useState(false);
+
+              return (
+                <div key={i} className="border border-primary/20">
+                  
+                  {/* Header */}
+                  <button
+                    onClick={() => setOpen(!open)}
+                    className="w-full p-6 flex items-center justify-between text-left"
+                  >
+                    <h4 className="font-bold flex items-center gap-2">
+                      <ChevronRight
+                        className={`w-4 h-4 transition-transform ${open ? "rotate-90" : ""}`}
+                      />
+                      {faq.q}
+                    </h4>
+                  </button>
+
+                  {/* Content */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      open ? "max-h-40 opacity-100 px-6 pb-6" : "max-h-0 opacity-0 px-6"
+                    }`}
+                  >
+                    <p className="text-primary/60 text-sm font-light">
+                      {faq.a}
+                    </p>
+                  </div>
+
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -989,6 +931,8 @@ const RegistrationForm = () => {
     telefono: "",
     legal: false,
     newsletter: false,
+    comida: false,
+    alergias: "",
     honeypot: ""
   });
 
@@ -1000,15 +944,16 @@ const RegistrationForm = () => {
     let newValue = value;
 
     if (name === "telefono") {
-      newValue = value.replace(/\D/g, ""); // solo números
+      newValue = value.replace(/\D/g, "");
     } else {
       newValue = sanitize(value);
     }
 
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : newValue
-    });
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : newValue,
+      ...(name === "comida" && !checked ? { alergias: "" } : {})
+    }));
   };
 
   const validate = () => {
@@ -1150,7 +1095,7 @@ const RegistrationForm = () => {
 
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 uppercase">
-            Registro Profesional
+            Regístrate aquí
           </h2>
           <p className="text-primary/60 font-light">
             Completa el formulario para reservar tu plaza.
@@ -1213,6 +1158,36 @@ const RegistrationForm = () => {
               </label>
               <input type="tel" name="telefono" required onChange={handleChange} pattern="[0-9]{7,15}" inputMode="numeric" className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary" />
             </div>
+          </div>
+
+          {/* COMIDA */}
+          <div className="space-y-4">
+            <div className="flex items-start gap-4">
+              <input
+                type="checkbox"
+                name="comida"
+                onChange={handleChange}
+                className="mt-1.5 accent-primary"
+              />
+              <span className="text-xs text-primary/60 font-light leading-relaxed">
+                ¿Te quedarás a la comida?
+              </span>
+            </div>
+
+            {/* CAMPO CONDICIONAL */}
+            {formData.comida && (
+              <div className="space-y-4">
+                <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
+                  Alergias o intolerancias
+                </label>
+                <input
+                  name="alergias"
+                  onChange={handleChange}
+                  placeholder="Ej: Sin gluten, frutos secos..."
+                  className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary"
+                />
+              </div>
+            )}
           </div>
 
           {/* LEGAL */}
@@ -1293,12 +1268,34 @@ const Footer = () => (
         <h4 className="text-sm md:text-xl font-condensed font-bold uppercase tracking-[0.4em] text-heading">
           Social
         </h4>
+
         <div className="space-y-3 text-sm font-light">
-          <a href="https://www.linkedin.com/company/tempelgroup/" target="_blank" className="block hover:text-heading transition-colors">LinkedIn</a>
-          <a href="https://www.youtube.com/@TempelGroupWorld" target="_blank" className="block hover:text-heading transition-colors">YouTube</a>
-          <a href="https://www.facebook.com/TempelGroupWorld/" target="_blank" className="block hover:text-heading transition-colors">Facebook</a>
-          <a href="https://www.instagram.com/tempelgroup/" target="_blank" className="block hover:text-heading transition-colors">Instagram</a>
-          <a href="https://share.google/U3uQePfl8ee4RSfrM" target="_blank" className="block hover:text-heading transition-colors">Google Business</a>
+          
+          <a href="https://www.linkedin.com/company/tempelgroup/" target="_blank" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Linkedin className="w-4 h-4" />
+            LinkedIn
+          </a>
+
+          <a href="https://www.youtube.com/@TempelGroupWorld" target="_blank" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Youtube className="w-4 h-4" />
+            YouTube
+          </a>
+
+          <a href="https://www.facebook.com/TempelGroupWorld/" target="_blank" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Facebook className="w-4 h-4" />
+            Facebook
+          </a>
+
+          <a href="https://www.instagram.com/tempelgroup/" target="_blank" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Instagram className="w-4 h-4" />
+            Instagram
+          </a>
+
+          <a href="https://share.google/U3uQePfl8ee4RSfrM" target="_blank" className="flex items-center gap-3 hover:text-heading transition-colors">
+            <Globe className="w-4 h-4" />
+            Google Business
+          </a>
+
         </div>
       </div>
 
@@ -1561,11 +1558,11 @@ export default function App() {
       <Hero />
       <About />
       <Themes />
-      <Innovation />
       <Partners />
       <Agenda /> 
       <Speakers />
       {/*<Sponsors />
+      
       <Countdown />
       <MapSection />*/}
       <PracticalInfo />

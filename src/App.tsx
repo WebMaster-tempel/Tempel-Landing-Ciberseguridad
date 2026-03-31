@@ -732,7 +732,7 @@ const PracticalInfo = () => {
       time: "09:00 - 15:00",
       location: "C/ Serrano Anguita 14. 28004 Madrid",
       venue: "Espacio DOBBLE",
-      mapUrl: "https://maps.google.com/?q=madrid",
+      mapUrl: "https://maps.app.goo.gl/hutd1Jq9t5U5Rf1v5",
       iframe: "https://www.google.com/maps?q=madrid&output=embed",
     },
     /*
@@ -931,7 +931,7 @@ const RegistrationForm = () => {
     telefono: "",
     legal: false,
     newsletter: false,
-    comida: false,
+    comida: null as boolean | null,
     alergias: "",
     honeypot: ""
   });
@@ -952,7 +952,7 @@ const RegistrationForm = () => {
     setFormData(prev => ({
       ...prev,
       [name]: type === "checkbox" ? checked : newValue,
-      ...(name === "comida" && !checked ? { alergias: "" } : {})
+      ...(name === "comida" && newValue === false ? { alergias: "" } : {})
     }));
   };
 
@@ -989,6 +989,15 @@ const RegistrationForm = () => {
         icon: "warning",
         title: "Email no permitido",
         text: "Introduce un email corporativo (no Gmail, Hotmail, etc.)"
+      });
+      return false;
+    }
+
+    if (formData.comida === null) {
+      Swal.fire({
+        icon: "warning",
+        title: "Selecciona una opción",
+        text: "Indica si asistirás a la comida"
       });
       return false;
     }
@@ -1163,33 +1172,82 @@ const RegistrationForm = () => {
           </div>
 
           {/* COMIDA */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <input
-                type="checkbox"
-                name="comida"
-                onChange={handleChange}
-                className="mt-1.5 accent-primary"
-              />
-              <span className="text-xs text-primary/60 font-light leading-relaxed">
+          <div className="space-y-6">
+
+            <div className="flex items-center justify-start gap-6 flex-wrap">
+
+              <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                 ¿Te quedarás a la comida?
-              </span>
+              </label>
+
+              {/* SELECTOR */}
+              <div className="inline-flex border border-primary/30 rounded-md overflow-hidden">
+
+              {/* SÍ */}
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData(prev => ({ ...prev, comida: true }))
+                }
+                style={{
+                  padding: "8px 16px",
+                  fontSize: "12px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  border: "1px solid #ccc",
+                  backgroundColor: formData.comida === true ? "#000" : "transparent",
+                  color: formData.comida === true ? "#fff" : "#000",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+              >
+                Sí
+              </button>
+
+              {/* NO */}
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData(prev => ({ ...prev, comida: false, alergias: "" }))
+                }
+                style={{
+                  padding: "8px 16px",
+                  fontSize: "12px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  border: "1px solid #ccc",
+                  borderLeft: "none",
+                  backgroundColor: formData.comida === false ? "#000" : "transparent",
+                  color: formData.comida === false ? "#fff" : "#000",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+              >
+                No
+              </button>
+
+              </div>
+
             </div>
 
-            {/* CAMPO CONDICIONAL */}
-            {formData.comida && (
+            {/* SOLO aparece si selecciona "Sí" */}
+            {formData.comida === true && (
               <div className="space-y-4">
+
                 <label className="text-xs font-condensed font-bold uppercase tracking-widest text-primary opacity-60">
                   Alergias o intolerancias
                 </label>
+
                 <input
                   name="alergias"
                   onChange={handleChange}
                   placeholder="Ej: Sin gluten, frutos secos..."
-                  className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary"
+                  className="w-full bg-transparent border-b border-primary/30 py-3 text-xl outline-none focus:border-primary transition-all"
                 />
+
               </div>
             )}
+
           </div>
 
           {/* LEGAL */}
@@ -1198,9 +1256,9 @@ const RegistrationForm = () => {
               <input type="checkbox" name="legal" required onChange={handleChange} className="mt-1.5 accent-primary" />
               <span className="text-xs text-primary/60 font-light leading-relaxed">
                 Acepto las{" "}
-                <a href="/aviso-legal.html" className="underline">condiciones legales</a>,{" "}
-                <a href="/politica-privacidad.html" className="underline">política de privacidad</a> y{" "}
-                <a href="/cookies.html" className="underline">cookies</a>. *
+                <a href="/aviso-legal.html" target="_blank" className="underline">condiciones legales</a>,{" "}
+                <a href="/politica-privacidad.html" target="_blank" className="underline">política de privacidad</a> y{" "}
+                <a href="/cookies.html" target="_blank" className="underline">cookies</a>. *
               </span>
             </div>
 

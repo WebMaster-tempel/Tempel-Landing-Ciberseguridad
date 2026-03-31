@@ -455,48 +455,48 @@ const Agenda = () => {
     {
       time: "09:30 - 10:00",
       title: "Bienvenida y acreditación",
-      desc: "Recepción de asistentes y entrega de acreditaciones."
+      desc: ""
     },
     {
       time: "10:00 - 10:05",
       title: "Introducción",
-      desc: "Jordi Gangolells (Marketing Manager, Tempel Group)."
+      desc: "Jordi Gangolells · Marketing Manager · Tempel Group"
     },
     {
       time: "10:05 - 10:20",
       title: "Evolución, experiencia y compromiso con el futuro del entorno industrial",
-      desc: "Gemma Garcés (Engineering Sales Manager, Tempel Group)."
+      desc: "Gemma Garcés · Sales Manager · Tempel Group"
     },
     {
       time: "10:20 - 10:50",
       title: "Aprendiendo de los errores al cumplir NIS2 en un entorno OT",
-      desc: "José Valiente (Director General, CCI)."
+      desc: "José Valiente · Director General · CCI"
     },
     {
       time: "10:50 - 11:50",
       title: "Protegiendo Activos OT en la Convergencia IT/OT: IEC 62443 en Acción",
-      desc: "Francisco Herrero (Channel Sales Manager, MOXA)."
+      desc: "Francisco Herrero · Channel Sales Manager · MOXA"
     },
     {
       time: "11:50 - 12:00",
       title: "Coffee Break",
-      desc: "Pausa para café y networking."
+      desc: ""
     },
     {
       time: "12:00 - 13:00",
       title: "Demostración Producto Moxa",
-      desc: "Álvaro Borges (Senior Lead Field Application Engineer, MOXA)."
+      desc: "Aisha Inam · Senior Lead Field Application Engineer · MOXA"
     },
     {
       time: "13:00 - 14:00",
       title: "Mesa redonda - Seguridad OT integral: regulación, tecnología y personas",
-      desc: "Francisco Herrero, Álvaro Borges, José Valiente y Juan Robles."
+      desc: "Francisco Herrero · Aisha Inam · José Valiente · Juan Robles"
     },
     {
       time: "14:00 - 15:00",
       title: "Lunch & Networking: Conectando la Ciberseguridad",
-      desc: "Espacio final para networking entre profesionales."
-    },
+      desc: ""
+    }
   ];
 
   return (
@@ -532,9 +532,11 @@ const Agenda = () => {
                 <h3 className="text-base md:text-lg font-semibold leading-tight">
                   {session.title}
                 </h3>
-                <p className="text-xs md:text-sm text-primary/60 leading-snug">
-                  {session.desc}
-                </p>
+                {session.desc && (
+                  <p className="text-xs md:text-sm text-primary/60 leading-snug">
+                    {session.desc}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}
@@ -729,7 +731,7 @@ const PracticalInfo = () => {
     {
       city: "Madrid",
       date: "28 Abril 2026",
-      time: "09:00 - 15:00",
+      time: "09:30 - 15:00",
       location: "C/ Serrano Anguita 14. 28004 Madrid",
       venue: "Espacio DOBBLE",
       mapUrl: "https://maps.app.goo.gl/hutd1Jq9t5U5Rf1v5",

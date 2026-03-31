@@ -283,7 +283,7 @@ $bodyUser = "
                 <!-- INFO -->
                 <div style='background:#f9f9f9;border:1px solid #eee;padding:15px;font-size:14px;color:#333;line-height:1.6;'>
 
-                  📅 <strong>Fecha:</strong> 10 de abril de 2026<br>
+                  📅 <strong>Fecha:</strong> 28 de abril de 2026<br>
 
                   📍 <strong>Ubicación:</strong>
                   <a href='https://www.google.com/maps/search/?api=1&query=Espacio+DOBBLE+Madrid'
@@ -292,7 +292,7 @@ $bodyUser = "
                     Espacio DOBBLE, Madrid
                   </a><br>
 
-                  🕘 <strong>Horario:</strong> 09:00 - 15:00
+                  🕘 <strong>Horario:</strong> 09:30 - 15:00
 
                 </div>
 
@@ -330,20 +330,6 @@ $bodyUser = "
 
                 </td>
               </tr>
-
-              <a href='https://calendar.google.com/calendar/render?action=TEMPLATE&text=Evento+Ciberseguridad+Industrial&dates=20260410T070000Z/20260410T130000Z&details=Evento+Tempel+Group+-+Ciberseguridad+Industrial&location=Espacio+DOBBLE,+Madrid'
-              target='_blank'
-              style='background:#1E6BFF;color:#fff;padding:12px 25px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:10px;'>
-              Añadir a Google Calendar
-              </a>
-
-              <p style='color:#444;line-height:1.6;'>
-                Recibirás más información próximamente.
-              </p>
-
-              <p style='color:#444;'>
-                <strong>Equipo Tempel Group</strong>
-              </p>
 
             </td>
           </tr>

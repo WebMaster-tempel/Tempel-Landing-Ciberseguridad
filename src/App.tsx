@@ -78,7 +78,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-40 bg-white border-b border-black/10">
         
-        <div className="max-w-5xl xl:max-w-6xl mx-auto px-6 md:px-12 xl:px-32 h-20 flex items-center justify-between">
+        <div className="max-w-5xl xl:max-w-6xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 h-20 flex items-center justify-between">
 
           {/* LOGO */}
           <img
@@ -95,7 +95,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
               </a>
             ))}
 
-            <a href="#register" className="border border-black px-4 py-2 hover:bg-black hover:text-white transition-all navbar-link" >
+            <a href="https://www.tempelgroup.com/eventos/evento-ciberseguridad-industrial/#register" className="border border-black px-4 py-2 hover:bg-black hover:text-white transition-all navbar-link" >
               Registro
             </a>
           </div>
@@ -125,7 +125,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
               style={{ backgroundColor: "#ffffff" }} // fondo blanco sólido
             >
               {/* HEADER */}
-              <div className="h-20 flex items-center justify-between px-6 md:px-12 xl:px-32 border-b border-black/10 shrink-0">
+              <div className="h-20 flex items-center justify-between px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 border-b border-black/10 shrink-0">
                 <img src={logoTempel} className="h-8 w-auto object-contain" />
 
                 <button onClick={() => setIsOpen(false)}>
@@ -148,7 +148,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
                 ))}
 
                 <a
-                  href="#register"
+                  href="https://www.tempelgroup.com/eventos/evento-ciberseguridad-industrial/#register"
                   onClick={() => setIsOpen(false)}
                   className="mt-6 border border-black px-8 py-4 text-lg font-condensed font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all"
                 >
@@ -168,7 +168,7 @@ const Navbar = ({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
 
 
 const Hero = () => (
-  <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-20 px-6 md:px-12 xl:px-32 overflow-hidden cyber-grid">
+  <section id="hero" className="relative pt-32 pb-20 md:pt-48 md:pb-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 overflow-hidden cyber-grid">
     
     {/* 🔥 Contenedor más estrecho en desktop */}
     <div className="max-w-5xl xl:max-w-6xl mx-auto relative z-10">
@@ -218,11 +218,11 @@ const Hero = () => (
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-            <a href="#register" className="btn-primary flex items-center justify-center gap-3 group">
+            <a href="https://www.tempelgroup.com/eventos/evento-ciberseguridad-industrial/#register" className="btn-primary flex items-center justify-center gap-3 group">
               Registrarse
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#about" className="btn-secondary flex items-center justify-center gap-3">
+            <a href="https://www.tempelgroup.com/eventos/evento-ciberseguridad-industrial/#about" className="btn-secondary flex items-center justify-center gap-3">
               Más información
               <Info className="w-5 h-5" />
             </a>
@@ -235,7 +235,7 @@ const Hero = () => (
           transition={{ duration: 1 }}
           className="relative"
         >
-          <div className="max-w-md md:max-w-lg xl:max-w-xl mx-auto lg:ml-auto">
+          <div className="max-w-md md:max-w-lg xl:max-w-xl lg:ml-auto">
             <img 
               src={HeroIMG}
               alt="Ciberseguridad industrial OT IT"
@@ -255,7 +255,7 @@ const Hero = () => (
 
 
 const About = () => (
-  <section id="about" className="py-12 md:py-20 px-6 md:px-12 xl:px-32 bg-primary">
+  <section id="about" className="py-12 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-primary">
     
     <div className="max-w-5xl xl:max-w-6xl mx-auto">
       
@@ -305,6 +305,18 @@ const About = () => (
               conectado, exigente y regulado
             </strong>.
           </p>
+
+          {/* Anotaciones de plazas */}
+          <div className="flex flex-col gap-2 mt-4">
+            <div className="inline-flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-[0.2em] text-heading opacity-70">
+              <span className="w-2 h-2 rounded-full bg-heading inline-block" />
+              Plazas limitadas
+            </div>
+            <div className="inline-flex items-center gap-2 text-xs font-condensed font-bold uppercase tracking-[0.2em] text-heading opacity-70">
+              <span className="w-2 h-2 rounded-full bg-heading inline-block" />
+              Asignación de plaza en base al orden de registro
+            </div>
+          </div>
         </motion.div>
         
         <motion.div
@@ -391,7 +403,7 @@ const Themes = () => {
   ];
 
   return (
-    <section id="themes" className="py-12 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+    <section id="themes" className="py-12 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-secondary text-primary">
       
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
         
@@ -500,7 +512,7 @@ const Agenda = () => {
   ];
 
   return (
-    <section id="agenda" className="py-16 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+    <section id="agenda" className="py-16 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-secondary text-primary">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
@@ -512,7 +524,7 @@ const Agenda = () => {
         </div>
 
           {/* Lista compacta */}
-          <div className="divide-y divide-primary/10 w-full md:w-3/4 mx-auto text-center">
+          <div className="divide-y divide-primary/10 w-full text-center">
           {sessions.map((session, i) => (
             <motion.div
               key={i}
@@ -545,7 +557,7 @@ const Agenda = () => {
         {/* CTA más compacto */}
         <div className="mt-10 flex justify-center">
           <a
-            href="#register"
+            href="https://www.tempelgroup.com/eventos/evento-ciberseguridad-industrial/#register"
             className="border border-primary px-6 py-3 text-xs md:text-sm font-condensed font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-secondary transition-all"
           >
             Reservar Plaza →
@@ -596,7 +608,7 @@ const Speakers = () => {
   ];
 
   return (
-    <section id="speakers" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-primary">
+    <section id="speakers" className="py-24 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-primary">
       
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
         
@@ -661,7 +673,7 @@ const Partners = () => {
   ];
 
   return (
-    <section className="py-24 md:py-10 px-6 md:px-12 xl:px-32 bg-primary border-y border-primary">
+    <section className="py-24 md:py-10 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-primary border-y border-primary">
       
       {/* 🔥 Contenedor alineado con todo */}
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
@@ -779,7 +791,7 @@ const PracticalInfo = () => {
   ];
 
   return (
-    <section className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-primary">
+    <section className="py-24 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-primary">
       
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
 
@@ -935,7 +947,8 @@ const RegistrationForm = () => {
     newsletter: false,
     comida: null as boolean | null,
     alergias: "",
-    honeypot: ""
+    honeypot: "",
+    utm: {} as Record<string, string>
   });
 
   const sanitize = (value: string) => value.replace(/[<>]/g, "").trim();
@@ -957,6 +970,24 @@ const RegistrationForm = () => {
       ...(name === "comida" && newValue === false ? { alergias: "" } : {})
     }));
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utmParams: Record<string, string> = {};
+
+    params.forEach((value, key) => {
+      if (key.toLowerCase().startsWith("utm_")) {
+        utmParams[key] = value;
+      }
+    });
+
+    if (Object.keys(utmParams).length > 0) {
+      setFormData(prev => ({
+        ...prev,
+        utm: utmParams
+      }));
+    }
+  }, []);
 
   const validate = () => {
     const blockedDomains = ["gmail.com", "hotmail.com", "outlook.com", "yahoo.com"];
@@ -1041,7 +1072,6 @@ const RegistrationForm = () => {
       let data;
       console.log("gfeirgoergnritgh", data);
       try {
-        console.log("texty", text);
         data = JSON.parse(text);
       } catch {
         throw new Error("Respuesta inválida del servidor");
@@ -1088,7 +1118,7 @@ const RegistrationForm = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="py-32 px-6 md:px-12 xl:px-32 text-center max-w-2xl mx-auto"
+        className="py-32 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 text-center max-w-2xl mx-auto"
       >
         <div className="w-20 h-20 border border-heading flex items-center justify-center mx-auto mb-8">
           <CheckCircle2 className="text-heading w-10 h-10" />
@@ -1102,7 +1132,7 @@ const RegistrationForm = () => {
   }
 
   return (
-    <section id="register" className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary text-primary">
+    <section id="register" className="py-24 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-secondary text-primary">
       
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
 
@@ -1291,7 +1321,7 @@ const RegistrationForm = () => {
 
 
 const Footer = () => (
-  <footer className="py-12 md:py-20 pb-16 md:pb-24 px-6 md:px-12 xl:px-32 bg-primary border-t border-primary">
+  <footer className="py-12 md:py-20 pb-16 md:pb-24 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-primary border-t border-primary">
     
     <div className="max-w-5xl xl:max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
       
@@ -1524,7 +1554,7 @@ const MapSection = () => {
   ];
 
   return (
-    <section className="py-24 md:py-20 px-6 md:px-12 xl:px-32 bg-secondary">
+    <section className="py-24 md:py-20 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-32 bg-secondary">
       
       <div className="max-w-5xl xl:max-w-6xl mx-auto">
         
